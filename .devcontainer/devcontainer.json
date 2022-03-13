@@ -1,0 +1,12 @@
+{
+  "name": "{{ PROJECT_NAME }}",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "extensions": [
+    "dbaeumer.vscode-eslint",    // ESLint
+  ],
+  "forwardPorts": [
+    80,    // http
+  ]
+}
