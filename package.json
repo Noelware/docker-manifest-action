@@ -1,34 +1,37 @@
 {
-  "name": "some_project_name",
-  "description": "{{ PROJECT_DESCRIPTION }}",
-  "version": "0.0.0",
-  "main": "build/index.js",
+  "name": "@noelware/docker-manifest-action",
+  "description": "🐳 GitHub action to apply Docker manifest objects onto an image.",
+  "version": "0.0.1",
+  "main": "build/action.js",
   "license": "MIT",
-  "author": "Noel <cutie@floofy.dev>",
-  "repository": "{{ PROJECT_REPO_URL }}",
-  "bugs": "{{ PROJECT_ISSUES_URI }}",
+  "author": "Noelware <team@noelware.org>",
+  "repository": "https://github.com/Noelware/docker-manifest-action",
+  "bugs": "https://github.com/Noelware/docker-manifest-action",
   "keywords": [
-    "{{ SOME KEYWORDS HERE }}"
-  ],
-  "files": [
-    "build",
-    "index.d.ts"
+    "docker",
+    "docker-manifest-action",
+    "manifest"
   ],
   "scripts": {
-    "build": "yarn lint && yarn fmt && rimraf build && tsc",
+    "build": "yarn lint && yarn fmt && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "fmt": "prettier --config ./.prettierrc.json --write ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "@actions/core": "1.6.0",
+    "@actions/exec": "1.1.0",
+    "@augu/utils": "1.5.6"
+  },
   "devDependencies": {
     "@augu/eslint-config": "2.2.0",
     "@augu/tsconfig": "1.1.1",
-    "@types/node": "^17.0.21",
-    "@typescript-eslint/eslint-plugin": "^5.14.0",
-    "@typescript-eslint/parser": "^5.14.0",
-    "eslint": "^8.11.0",
-    "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.6.2"
+    "@types/node": "17.0.21",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
+    "@vercel/ncc": "0.33.3",
+    "eslint": "8.11.0",
+    "eslint-config-prettier": "8.5.0",
+    "prettier": "2.5.1",
+    "typescript": "4.6.2"
   }
 }

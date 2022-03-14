@@ -1,7 +1,7 @@
-# [Noel's](https://floofy.dev) TypeScript Template
+# 🐳 Docker Manifest GitHub Action
 
-> _Opinionated TypeScript template for Noel's projects._
+> _GitHub action to apply Docker manifest objects onto an image._
 
 ## License
 
-**{{ PROJECT_NAME }}** is released under the **MIT License** by Noel. Read [here](/LICENSE) for more information.
+**docker-manifest-action** is released under the **MIT License** by Noel. Read [here](/LICENSE) for more information.

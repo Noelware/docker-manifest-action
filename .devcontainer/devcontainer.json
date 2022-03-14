@@ -1,12 +1,12 @@
 {
-  "name": "{{ PROJECT_NAME }}",
+  "name": "docker-manifest-action",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "workspace",
   "workspaceFolder": "/workspace",
   "extensions": [
-    "dbaeumer.vscode-eslint",    // ESLint
+    "dbaeumer.vscode-eslint", // ESLint
   ],
   "forwardPorts": [
-    80,    // http
+    80 // http
   ]
 }

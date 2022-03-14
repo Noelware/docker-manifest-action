@@ -1,6 +1,6 @@
 /*
- * {{ EMOJI }} {{ PROJECT_NAME }}: {{ PROJECT_DESCRIPTION }}
- * Copyright (c) 2022 Noel <cutie@floofy.dev>
+ * 🐳 @noelware/docker-manifest-action: GitHub action to apply Docker manifest objects onto an image.
+ * Copyright (c) 2022 Noelware <team@noelware.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,121 @@
  * SOFTWARE.
  */
 
-function helloWorld() {
-  return 'hello world';
-}
+import { Stopwatch, formatDate } from '@augu/utils';
+import * as core from '@actions/core';
+import { exec } from '@actions/exec';
 
-console.log(helloWorld());
+/**
+ * Overwrites the logger utilities from `@actions/core` to pretty-print the result.
+ * @return A dispose function to revert to the previous changes.
+ */
+const overwriteLogger = () => {
+  const originalInfo = core.info;
+  const originalDebug = core.debug;
+  const originalWarn = core.warning;
+
+  // @ts-ignore :)
+  core.warning = (message: string | Error, properties?: core.AnnotationProperties) => {
+    const date = formatDate(new Date());
+    if (message instanceof Error) {
+      originalWarn(message, properties);
+    } else {
+      originalWarn(`${date} WARN :: ${message}`, properties);
+    }
+  };
+
+  // @ts-ignore :)
+  core.info = (message: string) => {
+    const date = formatDate(new Date());
+    originalInfo(`${date} INFO :: ${message}`);
+  };
+
+  // @ts-ignore :)
+  core.debug = (message: string) => {
+    if (!core.isDebug()) return;
+
+    const date = formatDate(new Date());
+    originalDebug(`${date} DEBUG :: ${message}`);
+  };
+
+  return () => {
+    // @ts-ignore :)
+    core.info = originalInfo;
+
+    // @ts-ignore
+    core.warning = originalWarn;
+
+    // @ts-ignore
+    core.debug = originalDebug;
+  };
+};
+
+/**
+ * Measure this {@link func function}'s time that it took to execute.
+ * @param func The function to measure.
+ * @param args The arguments the function needs to use.
+ * @returns A tuple of the [result, time it took].
+ */
+const measureAsyncFunction = async <
+  F extends (...args: any[]) => Promise<any>,
+  Args extends any[] = Parameters<F>,
+  R extends any = ReturnType<F> extends Promise<infer U> ? U : never
+>(
+  func: F,
+  ...args: Args
+): Promise<[string, R]> => {
+  const stopwatch = new Stopwatch();
+  stopwatch.start();
+
+  const result: R = await func(...args);
+  const end = stopwatch.end();
+
+  return [end, result];
+};
+
+const main = async () => {
+  const revertBack = overwriteLogger();
+
+  // retrieve inputs
+  const baseImage = core.getInput('base-image', { trimWhitespace: true, required: true });
+  const extraImages = core.getInput('extra-images', { trimWhitespace: true, required: true });
+  const shouldPush = core.getBooleanInput('push');
+
+  const imagesToCreate = extraImages.split(',');
+  if (imagesToCreate.length === 0) {
+    core.warning(
+      `You will need some extra images to set, at the moment, you have none! Did you forget to use \`,\` as the seperator?`
+    );
+
+    core.debug(`Data: ${extraImages}`);
+    revertBack();
+    process.exitCode = 1;
+
+    return;
+  }
+
+  core.info(`Creating manifests for image '${baseImage}'...`);
+  const [time] = await measureAsyncFunction(async () => {
+    await exec('docker', ['manifest', 'create', baseImage, ...imagesToCreate]);
+  });
+
+  core.debug(`Took ${time} to execute command: \`docker manifest create ${baseImage} ${imagesToCreate.join(' ')}\``);
+  core.info(`Created manifested image: ${baseImage} with images ${imagesToCreate.join(', ')}`);
+
+  if (shouldPush) {
+    core.info(`Pushing to its respected registry...`);
+    const [otherTime, result] = await measureAsyncFunction(async () => {
+      await exec('docker', ['manifest', 'push', baseImage]);
+    });
+
+    core.debug(`Took ${otherTime} to execute command: \`docker manifest push ${baseImage}\`!\nResult: ${result}`);
+    core.info(`Pushed image ${baseImage} to its respected registry.`);
+  }
+
+  revertBack();
+};
+
+main().catch((ex) => {
+  core.error(ex);
+  process.exit(1);
+});

@@ -1,0 +1,25 @@
+name: Docker Manifest GitHub Action
+description: 🐳 GitHub action to apply Docker manifest objects onto an image.
+author: Noelware <team@noelware.org>
+
+branding:
+  icon: box
+  color: blue
+
+runs:
+  using: node16
+  main: ./build/index.js
+
+inputs:
+  base-image:
+    description: Describes the base image to apply the rest of the other images.
+    required: true
+
+  extra-images:
+    description: A list of extra images to apply to the base-image input.
+    required: true
+
+  push:
+    description: Pushes the base-image to the registry it belongs to.
+    required: false
+    default: 'true'
