@@ -1,7 +1,7 @@
 {
   "name": "@noelware/docker-manifest-action",
   "description": "🐳 GitHub action to apply Docker manifest objects onto an image.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "build/action.js",
   "license": "MIT",
   "author": "Noelware <team@noelware.org>",
