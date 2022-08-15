@@ -101,7 +101,7 @@ const main = async () => {
   const extraImages = core.getInput('extra-images', { trimWhitespace: true, required: true });
   const shouldPush = core.getBooleanInput('push');
 
-  const imagesToCreate = extraImages.split(',').map(i => i.trim());
+  const imagesToCreate = extraImages.split(',').map((i) => i.trim());
   if (imagesToCreate.length === 0) {
     core.warning(
       `You will need some extra images to set, at the moment, you have none! Did you forget to use \`,\` as the seperator?`

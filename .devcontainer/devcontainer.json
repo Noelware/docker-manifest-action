@@ -4,7 +4,7 @@
   "service": "workspace",
   "workspaceFolder": "/workspace",
   "extensions": [
-    "dbaeumer.vscode-eslint", // ESLint
+    "dbaeumer.vscode-eslint" // ESLint
   ],
   "forwardPorts": [
     80 // http
