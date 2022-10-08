@@ -120,7 +120,7 @@ const main = async () => {
 
   core.info(`Creating manifests for image '${baseImage}'...`);
   const [time] = await measureAsyncFunction(async () => {
-    await exec('docker', getArgs('create', baseImage, imagesToCreate));
+    await exec('docker', getArgs('create', baseImage, imagesToCreate, true));
   });
 
   core.debug(`Took ${time} to execute command: \`docker manifest create ${baseImage} ${imagesToCreate.join(' ')}\``);
@@ -129,7 +129,7 @@ const main = async () => {
   if (shouldPush) {
     core.info(`Pushing to its respected registry...`);
     const [otherTime, result] = await measureAsyncFunction(async () => {
-      await exec('docker', getArgs('push', baseImage, [], amend));
+      await exec('docker', getArgs('push', baseImage));
     });
 
     core.debug(`Took ${otherTime} to execute command: \`docker manifest push ${baseImage}\`!\nResult: ${result}`);
