@@ -23,3 +23,8 @@ inputs:
     description: Pushes the base-image to the registry it belongs to.
     required: false
     default: 'true'
+
+  amend:
+    description: If the manifest command should override tags
+    required: false
+    default: 'false'

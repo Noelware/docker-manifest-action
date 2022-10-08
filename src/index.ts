@@ -93,6 +93,11 @@ const measureAsyncFunction = async <
   return [end, result];
 };
 
+const getArgs = (type: 'create' | 'push', baseImage: string, images: string[] = [], amend = false) =>
+  amend
+    ? ['docker', 'manifest', '--amend', type, baseImage, ...images]
+    : ['docker', 'manifest', type, baseImage, ...images];
+
 const main = async () => {
   const revertBack = overwriteLogger();
 
@@ -100,6 +105,7 @@ const main = async () => {
   const baseImage = core.getInput('base-image', { trimWhitespace: true, required: true });
   const extraImages = core.getInput('extra-images', { trimWhitespace: true, required: true });
   const shouldPush = core.getBooleanInput('push');
+  const amend = core.getBooleanInput('amend');
 
   const imagesToCreate = extraImages.split(',').map((i) => i.trim());
   if (imagesToCreate.length === 0) {
@@ -116,7 +122,7 @@ const main = async () => {
 
   core.info(`Creating manifests for image '${baseImage}'...`);
   const [time] = await measureAsyncFunction(async () => {
-    await exec('docker', ['manifest', 'create', baseImage, ...imagesToCreate]);
+    await exec('docker', getArgs('create', baseImage, imagesToCreate, amend));
   });
 
   core.debug(`Took ${time} to execute command: \`docker manifest create ${baseImage} ${imagesToCreate.join(' ')}\``);
@@ -125,6 +131,7 @@ const main = async () => {
   if (shouldPush) {
     core.info(`Pushing to its respected registry...`);
     const [otherTime, result] = await measureAsyncFunction(async () => {
+      await exec('docker', getArgs('push', baseImage));
       await exec('docker', ['manifest', 'push', baseImage]);
     });
 
