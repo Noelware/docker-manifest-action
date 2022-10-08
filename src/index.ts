@@ -94,9 +94,7 @@ const measureAsyncFunction = async <
 };
 
 const getArgs = (type: 'create' | 'push', baseImage: string, images: string[] = [], amend = false) =>
-  amend
-    ? ['docker', 'manifest', '--amend', type, baseImage, ...images]
-    : ['docker', 'manifest', type, baseImage, ...images];
+  amend ? ['manifest', '--amend', type, baseImage, ...images] : ['manifest', type, baseImage, ...images];
 
 const main = async () => {
   const revertBack = overwriteLogger();
