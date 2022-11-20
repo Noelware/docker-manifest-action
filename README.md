@@ -28,12 +28,12 @@ jobs:
 
 ### Inputs
 
-| Name           | Type         | Description                                                          | Required | Default? |
-| -------------- | ------------ | -------------------------------------------------------------------- | -------- | -------- |
-| `base-image`   | String       | The name:tag of the final image containing all extra-images. Optionally, comma-separate to create multiple final images with the same manifest.                     | true     | -        |
-| `extra-images` | List[String] | A comma-separated list of extra images to apply to the base-image input. | true     | -        |
-| `push`         | Boolean      | If the action should push it to its respected registry.              | false    | true     |
-| `amend`        | Boolean      | If the action should amend an existing manifest rather than create a new one.            | false    | false    |
+| Name           | Type         | Description                                                                                                                                     | Required | Default? |
+| -------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| `base-image`   | String       | The name:tag of the final image containing all extra-images. Optionally, comma-separate to create multiple final images with the same manifest. | true     | -        |
+| `extra-images` | List[String] | A comma-separated list of extra images to apply to the base-image input.                                                                        | true     | -        |
+| `push`         | Boolean      | If the action should push it to its respected registry.                                                                                         | false    | true     |
+| `amend`        | Boolean      | If the action should amend an existing manifest rather than create a new one.                                                                   | false    | false    |
 
 ## License
 
