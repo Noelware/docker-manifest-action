@@ -12,11 +12,13 @@ runs:
 
 inputs:
   base-image:
-    description: Describes the base image to apply the rest of the other images.
+    description:
+      The name:tag of the final image containing all extra-images. Optionally, comma-separate to create multiple final images with the same
+      manifest.
     required: true
 
   extra-images:
-    description: A list of extra images to apply to the base-image input.
+    description: A comma-separated list of extra images to apply to the base-image input.
     required: true
 
   push:
