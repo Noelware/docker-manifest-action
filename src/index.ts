@@ -100,7 +100,10 @@ const main = async () => {
   const revertBack = overwriteLogger();
 
   // retrieve inputs
-  const baseImage = core.getInput('base-image', { trimWhitespace: true, required: true });
+  const baseImage = core
+    .getInput('base-image', { trimWhitespace: true, required: true })
+    .split(',')
+    .map((i) => i.trim());
   const extraImages = core.getInput('extra-images', { trimWhitespace: true, required: true });
   const shouldPush = core.getBooleanInput('push');
   const amend = core.getBooleanInput('amend');
@@ -118,24 +121,27 @@ const main = async () => {
     return;
   }
 
-  core.info(`Creating manifests for image '${baseImage}'...`);
-  const [time] = await measureAsyncFunction(async () => {
-    await exec('docker', getArgs('create', baseImage, imagesToCreate, true));
-  });
+  await Promise.all(
+    baseImage.map(async (image) => {
+      core.info(`Creating manifests for image '${image}'...`);
+      const [time] = await measureAsyncFunction(async () => {
+        await exec('docker', getArgs('create', image, imagesToCreate, true));
+      });
 
-  core.debug(`Took ${time} to execute command: \`docker manifest create ${baseImage} ${imagesToCreate.join(' ')}\``);
-  core.info(`Created manifested image: ${baseImage} with images ${imagesToCreate.join(', ')}`);
+      core.debug(`Took ${time} to execute command: \`docker manifest create ${image} ${imagesToCreate.join(' ')}\``);
+      core.info(`Created manifested image: ${image} with images ${imagesToCreate.join(', ')}`);
 
-  if (shouldPush) {
-    core.info(`Pushing to its respected registry...`);
-    const [otherTime, result] = await measureAsyncFunction(async () => {
-      await exec('docker', getArgs('push', baseImage));
-    });
+      if (shouldPush) {
+        core.info(`Pushing ${image}...`);
+        const [otherTime, result] = await measureAsyncFunction(async () => {
+          await exec('docker', getArgs('push', image));
+        });
 
-    core.debug(`Took ${otherTime} to execute command: \`docker manifest push ${baseImage}\`!\nResult: ${result}`);
-    core.info(`Pushed image ${baseImage} to its respected registry.`);
-  }
-
+        core.debug(`Took ${otherTime} to execute command: \`docker manifest push ${image}\`!\nResult: ${result}`);
+        core.info(`Pushed image ${image} to its respected registry.`);
+      }
+    })
+  );
   revertBack();
 };
 
