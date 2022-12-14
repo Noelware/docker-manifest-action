@@ -25,7 +25,7 @@
   "devDependencies": {
     "@augu/eslint-config": "3.0.0",
     "@augu/tsconfig": "1.1.1",
-    "@types/node": "18.11.14",
+    "@types/node": "18.11.15",
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
     "@vercel/ncc": "0.36.0",
