@@ -1,6 +1,27 @@
+# 🐳 Docker Manifest GitHub Action: Simple and tiny GitHub action to link Docker manifests easily.
+# Copyright (c) 2022-2023 Noelware, LLC. <team@noelware.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 name: Docker Manifest GitHub Action
 description: 🐳 GitHub action to apply Docker manifest objects onto an image.
-author: Noelware <team@noelware.org>
+author: Noelware, LLC. <team@noelware.org>
 
 branding:
   icon: box
@@ -11,15 +32,21 @@ runs:
   main: ./build/index.js
 
 inputs:
-  base-image:
-    description:
-      The name:tag of the final image containing all extra-images. Optionally, comma-separate to create multiple final images with the same
-      manifest.
+  inputs:
+    description: A list of input Docker images (that were previously built) as the inputs for the merged manifests. Optionally, comma-seperate to create multiple final images with the same manifest.
     required: true
 
-  extra-images:
-    description: A comma-separated list of extra images to apply to the base-image input.
+  outputs:
+    description: Comma-seperated list of images that will be applied from the `inputs`
     required: true
+
+  base-image:
+    description: [deprecated] Use the `inputs` input instead
+    required: false
+
+  extra-images:
+    description: [deprecated] Use the `output` input instead
+    required: false
 
   push:
     description: Pushes the base-image to the registry it belongs to.
