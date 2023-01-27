@@ -81,5 +81,5 @@ jobs:
       - name: Create merged manifest
         uses: ./
         with:
-          inputs: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-amd64,registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-arm64
-          outputs: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest
+          inputs: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest
+          images: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-amd64,registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-arm64

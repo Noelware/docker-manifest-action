@@ -37,7 +37,7 @@ export interface Input {
   /**
    * Comma-seperated list of images that will be applied from the {@link Input.inputs inputs}.
    */
-  outputs: string[];
+  images: string[];
 
   /**
    * If the action should apply the **--amend** flag to `docker manifest create` (and `docker manifest push` if `push` is true).
@@ -86,7 +86,7 @@ export const getInputs = (): Input | null => {
     debug(
       [
         '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
-        `Outputs => ${inputs.join(', ') || 'None'}`,
+        `Outputs => ${outputs.join(', ') || 'None'}`,
         `Amend   => ${amend ? 'Yes' : 'No'}`,
         `Push    => ${push ? 'Yes' : 'No'}`,
         '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
@@ -116,7 +116,7 @@ export const getInputs = (): Input | null => {
 
   return {
     inputs,
-    outputs,
+    images: outputs,
     push,
     amend
   };

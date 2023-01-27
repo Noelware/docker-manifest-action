@@ -39,25 +39,25 @@ async function main() {
 
   core.startGroup('Inputs');
   {
-    core.info(`Inputs  => ${inputs.inputs.join(', ')}`);
-    core.info(`Outputs => ${inputs.outputs.join(', ')}`);
-    core.info(`Amend?  => ${inputs.amend ? 'Yes' : 'No'}`);
-    core.info(`Push?   => ${inputs.push ? 'Yes' : 'No'}`);
+    core.info(`Images to Merge => ${inputs.images.join(', ')}`);
+    core.info(`Base Images     => ${inputs.inputs.join(', ')}`);
+    core.info(`Amend?          => ${inputs.amend ? 'Yes' : 'No'}`);
+    core.info(`Push?           => ${inputs.push ? 'Yes' : 'No'}`);
   }
   core.endGroup();
 
   await Promise.all(
     inputs.inputs.map(async (image) => {
-      core.info(`Creating manifest for image [${image}] with [${inputs.outputs.join(', ')}] outputs`);
+      core.info(`Creating manifest for image [${image}] with [${inputs.images.join(', ')}] outputs`);
       const [time, res] = await util.measureAsyncFunction(() =>
-        exec('docker', getManifestArguments('create', image, inputs.outputs, inputs.amend))
+        exec('docker', getManifestArguments('create', image, inputs.images, inputs.amend))
       );
 
       core.info(
-        `Took ${time} to create manifest for image [${image}] with [${inputs.outputs.join(', ')}] as the outputs!`
+        `Took ${time} to create manifest for image [${image}] with [${inputs.images.join(', ')}] as the outputs!`
       );
 
-      core.debug(`$ docker ${getManifestArguments('create', image, inputs.outputs, inputs.amend)}\n${res}`);
+      core.debug(`$ docker ${getManifestArguments('create', image, inputs.images, inputs.amend)}\n${res}`);
 
       if (inputs.push) {
         core.info(`Now pushing image ${image}`);

@@ -37,8 +37,8 @@ inputs:
     required: false
     default: ''
 
-  outputs:
-    description: Comma-seperated list of images that will be applied from the `inputs`
+  images:
+    description: Comma-seperated list of images that will be applied in the merged manifest from the `inputs`.
     required: false
     default: ''
 

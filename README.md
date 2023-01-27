@@ -15,8 +15,8 @@ steps:
   - name: Create and push manifest images
     uses: Noelware/docker-manifest-action@master # or use a pinned version in the Releases tab
     with:
-      inputs: namespace/image:latest-amd64[,namespace/other-image:latest-arm64]
-      output: namespace/image:latest
+      inputs: namespace/image:latest
+      images: namespace/image:latest-amd64[,namespace/other-image:latest-arm64]
       push: true
 ```
 
@@ -38,13 +38,13 @@ A list of input Docker images (that were previously built) as the inputs for the
 inputs: namespace/image:latest-amd64,namespace/image:latest-arm64
 ```
 
-### outputs
+### images
 
 > Type: List or String
 >
 > Required: True
 
-Comma-seperated list of images that will be applied from the [inputs](#inputs).
+Comma-seperated list of images that will be applied in the merged manifest from the [inputs](#inputs).
 
 #### Example
 
