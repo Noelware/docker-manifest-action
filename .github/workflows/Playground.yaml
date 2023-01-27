@@ -78,7 +78,7 @@ jobs:
           file: ./playground/node.Dockerfile
           push: true
           tags: |
-            ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+            ghcr.io/noelware/docker-manifest-action/playground:latest-amd64
 
       - name: Build playground image (arm64)
         uses: docker/build-push-action@v3
