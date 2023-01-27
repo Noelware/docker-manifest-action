@@ -48,7 +48,7 @@ on:
       - 'LICENSE'
       - 'renovate.json'
 jobs:
-  lint:
+  playground:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -73,7 +73,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: .
           file: ./playground/node.Dockerfile
-          push: true
+          push: false
           tags: |
             registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-amd64,
             registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-arm64

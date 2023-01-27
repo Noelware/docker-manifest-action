@@ -55,7 +55,7 @@ inputs:
   push:
     description: If the action should push the outputs to the Docker registry listed as.
     required: false
-    default: 'true'
+    default: 'false'
 
   amend:
     description:
