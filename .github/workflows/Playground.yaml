@@ -56,16 +56,19 @@ jobs:
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          # https://github.com/docker/build-push-action/issues/761
+          driver-opts: image=moby/buildkit:v0.10.6
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
 
-      - name: Login into Noel's private registry
+      - name: Login into GitHub's container registry
         uses: docker/login-action@v2
         with:
-          registry: registry.floofy.dev
-          username: august
-          password: ${{secrets.NOEL_REGISTRY_PASSWORD}}
+          registry: ghcr.io
+          username: noelware
+          password: ${{secrets.GITHUB_TOKEN}}
 
       - name: Build playground image
         uses: docker/build-push-action@v3
@@ -73,13 +76,13 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: .
           file: ./playground/node.Dockerfile
-          push: false
+          push: true
           tags: |
-            registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-amd64,
-            registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-arm64
+            ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,
+            ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
 
       - name: Create merged manifest
         uses: ./
         with:
-          inputs: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest
-          images: registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-amd64,registry.floofy.dev/noelware/actions/docker-manifest/playground:latest-arm64
+          inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
+          images: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
