@@ -62,7 +62,7 @@ export const getInputs = (): Input | null => {
 
   const push = getBooleanInput('push', { trimWhitespace: true });
   const amend = getBooleanInput('amend', { trimWhitespace: true });
-  const baseImages = getInput('base-image', { trimWhitespace: true, required: true })
+  const baseImages = getInput('base-image', { trimWhitespace: true })
     .split(',')
     .map((i) => i.trim());
 
@@ -71,7 +71,7 @@ export const getInputs = (): Input | null => {
     inputs = baseImages;
   }
 
-  const extraImages = getInput('extra-images', { trimWhitespace: true, required: true })
+  const extraImages = getInput('extra-images', { trimWhitespace: true })
     .split(',')
     .map((i) => i.trim());
 
