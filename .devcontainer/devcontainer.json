@@ -1,12 +1,18 @@
 {
   "name": "docker-manifest-action",
-  "dockerComposeFile": "./docker-compose.yml",
-  "service": "workspace",
-  "workspaceFolder": "/workspace",
-  "extensions": [
-    "dbaeumer.vscode-eslint" // ESLint
-  ],
-  "forwardPorts": [
-    80 // http
-  ]
+  "image": "ghcr.io/auguwu/coder-images/node",
+  "remoteUser": "noel",
+  "containerUser": "noel",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
+  "features": {
+    // JetBrains Gateway requires an SSH connection to be available, so,
+    // this is here for that. :)
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  }
 }
