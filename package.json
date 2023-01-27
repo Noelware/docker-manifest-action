@@ -16,6 +16,7 @@
   "scripts": {
     "build": "yarn fmt && yarn lint && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
     "lint": "tsx --tsconfig ./scripts/tsconfig.json scripts/eslint.ts",
+    "test": "yarn fmt && yarn lint && vitest run",
     "fmt": "prettier --config ./.prettierrc.json --write ."
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "rimraf": "4.1.2",
     "signale": "1.4.0",
     "tsx": "3.12.2",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "vitest": "0.28.3"
   }
 }

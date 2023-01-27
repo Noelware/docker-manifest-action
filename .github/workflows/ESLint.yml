@@ -72,3 +72,6 @@ jobs:
 
       - name: Lint project with ESLint
         run: yarn lint
+
+      - name: Run all tests
+        run: yarn test

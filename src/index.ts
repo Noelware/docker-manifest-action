@@ -35,7 +35,10 @@ const getManifestArguments = (
 
 async function main() {
   const inputs = getInputs();
-  if (inputs === null) return;
+  if (inputs === null) {
+    process.exitCode = 1;
+    return;
+  }
 
   core.startGroup('Inputs');
   {

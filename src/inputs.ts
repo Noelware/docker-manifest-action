@@ -91,6 +91,7 @@ export const getInputs = (): Input | null => {
   }
 
   // Warn if we don't have any inputs
+  inputs = inputs.filter(Boolean);
   if (inputs.length === 0) {
     warning('You will need to set some inputs! Did you forget to use `,` as the seperator?');
     debug(
@@ -103,11 +104,11 @@ export const getInputs = (): Input | null => {
       ].join('\n')
     );
 
-    process.exitCode = 1;
     return null;
   }
 
   // Warn if we don't have any outputs
+  outputs = outputs.filter(Boolean);
   if (outputs.length === 0) {
     warning('You will need to set some outputs! Did you forget to use `,` as the seperator?');
     debug(
@@ -120,7 +121,6 @@ export const getInputs = (): Input | null => {
       ].join('\n')
     );
 
-    process.exitCode = 1;
     return null;
   }
 
