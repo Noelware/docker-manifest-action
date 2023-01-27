@@ -95,3 +95,4 @@ jobs:
         with:
           inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
           images: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+          push: true
