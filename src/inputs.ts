@@ -56,7 +56,7 @@ export const getInputs = (): Input | null => {
     .split(',')
     .map((i) => i.trim());
 
-  let outputs = getInput('outputs', { trimWhitespace: true, required: true })
+  let outputs = getInput('images', { trimWhitespace: true, required: true })
     .split(',')
     .map((i) => i.trim());
 
