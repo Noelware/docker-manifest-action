@@ -73,12 +73,21 @@ jobs:
       - name: Build playground image
         uses: docker/build-push-action@v3
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           context: .
           file: ./playground/node.Dockerfile
           push: true
           tags: |
-            ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,
+            ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+
+      - name: Build playground image (arm64)
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/arm64
+          context: .
+          file: ./playground/node.Dockerfile
+          push: true
+          tags: |
             ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
 
       - name: Create merged manifest
