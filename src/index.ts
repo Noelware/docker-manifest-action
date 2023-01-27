@@ -21,131 +21,58 @@
  * SOFTWARE.
  */
 
-// import { Stopwatch, formatDate } from '@augu/utils';
-// import * as core from '@actions/core';
-// import { exec } from '@actions/exec';
+import { getInputs } from './inputs';
+import * as util from './utils';
+import * as core from '@actions/core';
+import { exec } from '@actions/exec';
 
-// /**
-//  * Overwrites the logger utilities from `@actions/core` to pretty-print the result.
-//  * @return A dispose function to revert to the previous changes.
-//  */
-// const overwriteLogger = () => {
-//   const originalInfo = core.info;
-//   const originalDebug = core.debug;
-//   const originalWarn = core.warning;
+const getManifestArguments = (
+  type: 'create' | 'push',
+  baseImage: string,
+  images: string[] = [],
+  amend = false
+): string[] => (amend ? ['manifest', type, '--amend', baseImage, ...images] : ['manifest', type, baseImage, ...images]);
 
-//   // @ts-ignore :)
-//   core.warning = (message: string | Error, properties?: core.AnnotationProperties) => {
-//     const date = formatDate(new Date());
-//     if (message instanceof Error) {
-//       originalWarn(message, properties);
-//     } else {
-//       originalWarn(`${date} WARN :: ${message}`, properties);
-//     }
-//   };
+async function main() {
+  const inputs = getInputs();
+  if (inputs === null) return;
 
-//   // @ts-ignore :)
-//   core.info = (message: string) => {
-//     const date = formatDate(new Date());
-//     originalInfo(`${date} INFO :: ${message}`);
-//   };
+  core.startGroup('Inputs');
+  {
+    core.info(`Inputs  => ${inputs.inputs.join(', ')}`);
+    core.info(`Outputs => ${inputs.outputs.join(', ')}`);
+    core.info(`Amend?  => ${inputs.amend ? 'Yes' : 'No'}`);
+    core.info(`Push?   => ${inputs.push ? 'Yes' : 'No'}`);
+  }
+  core.endGroup();
 
-//   // @ts-ignore :)
-//   core.debug = (message: string) => {
-//     if (!core.isDebug()) return;
+  await Promise.all(
+    inputs.inputs.map(async (image) => {
+      core.info(`Creating manifest for image [${image}] with [${inputs.outputs.join(', ')}] outputs`);
+      const [time, res] = await util.measureAsyncFunction(() =>
+        exec('docker', getManifestArguments('create', image, inputs.outputs, inputs.amend))
+      );
 
-//     const date = formatDate(new Date());
-//     originalDebug(`${date} DEBUG :: ${message}`);
-//   };
+      core.info(
+        `Took ${time} to create manifest for image [${image}] with [${inputs.outputs.join(', ')}] as the outputs!`
+      );
 
-//   return () => {
-//     // @ts-ignore :)
-//     core.info = originalInfo;
+      core.debug(`$ docker ${getManifestArguments('create', image, inputs.outputs, inputs.amend)}\n${res}`);
 
-//     // @ts-ignore
-//     core.warning = originalWarn;
+      if (inputs.push) {
+        core.info(`Now pushing image ${image}`);
+        const [other, result] = await util.measureAsyncFunction(() =>
+          exec('docker', getManifestArguments('push', image, [], inputs.amend))
+        );
 
-//     // @ts-ignore
-//     core.debug = originalDebug;
-//   };
-// };
+        core.info(`Took ${other} to push image [${image}]`);
+        core.debug(`$ docker ${getManifestArguments('push', image, [], inputs.amend)}\n${result}`);
+      }
+    })
+  );
+}
 
-// /**
-//  * Measure this {@link func function}'s time that it took to execute.
-//  * @param func The function to measure.
-//  * @param args The arguments the function needs to use.
-//  * @returns A tuple of the [result, time it took].
-//  */
-// const measureAsyncFunction = async <
-//   F extends (...args: any[]) => Promise<any>,
-//   Args extends any[] = Parameters<F>,
-//   R extends any = ReturnType<F> extends Promise<infer U> ? U : never
-// >(
-//   func: F,
-//   ...args: Args
-// ): Promise<[string, R]> => {
-//   const stopwatch = new Stopwatch();
-//   stopwatch.start();
-
-//   const result: R = await func(...args);
-//   const end = stopwatch.end();
-
-//   return [end, result];
-// };
-
-// const getArgs = (type: 'create' | 'push', baseImage: string, images: string[] = [], amend = false) =>
-//   amend ? ['manifest', type, '--amend', baseImage, ...images] : ['manifest', type, baseImage, ...images];
-
-// const main = async () => {
-//   const revertBack = overwriteLogger();
-
-//   // retrieve inputs
-//   const baseImage = core
-//     .getInput('base-image', { trimWhitespace: true, required: true })
-//     .split(',')
-//     .map((i) => i.trim());
-//   const extraImages = core.getInput('extra-images', { trimWhitespace: true, required: true });
-//   const shouldPush = core.getBooleanInput('push');
-//   const amend = core.getBooleanInput('amend');
-
-//   const imagesToCreate = extraImages.split(',').map((i) => i.trim());
-//   if (imagesToCreate.length === 0) {
-//     core.warning(
-//       `You will need some extra images to set, at the moment, you have none! Did you forget to use \`,\` as the seperator?`
-//     );
-
-//     core.debug(`Data: ${extraImages}`);
-//     revertBack();
-//     process.exitCode = 1;
-
-//     return;
-//   }
-
-//   await Promise.all(
-//     baseImage.map(async (image) => {
-//       core.info(`Creating manifests for image '${image}'...`);
-//       const [time] = await measureAsyncFunction(async () => {
-//         await exec('docker', getArgs('create', image, imagesToCreate, true));
-//       });
-
-//       core.debug(`Took ${time} to execute command: \`docker manifest create ${image} ${imagesToCreate.join(' ')}\``);
-//       core.info(`Created manifested image: ${image} with images ${imagesToCreate.join(', ')}`);
-
-//       if (shouldPush) {
-//         core.info(`Pushing ${image}...`);
-//         const [otherTime, result] = await measureAsyncFunction(async () => {
-//           await exec('docker', getArgs('push', image));
-//         });
-
-//         core.debug(`Took ${otherTime} to execute command: \`docker manifest push ${image}\`!\nResult: ${result}`);
-//         core.info(`Pushed image ${image} to its respected registry.`);
-//       }
-//     })
-//   );
-//   revertBack();
-// };
-
-// main().catch((ex) => {
-//   core.error(ex);
-//   process.exit(1);
-// });
+main().catch((ex) => {
+  core.error(ex);
+  process.exit(1);
+});

@@ -3,17 +3,16 @@
   "image": "ghcr.io/auguwu/coder-images/node",
   "remoteUser": "noel",
   "containerUser": "noel",
-  "extensions": [
-    "dbaeumer.vscode-eslint" // ESLint
-  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
   "features": {
     // JetBrains Gateway requires an SSH connection to be available, so,
     // this is here for that. :)
     "ghcr.io/devcontainers/features/sshd:1": {
       "version": "latest"
     }
-  },
-  "forwardPorts": [
-    80 // http
-  ]
+  }
 }

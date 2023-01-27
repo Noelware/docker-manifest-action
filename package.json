@@ -1,37 +1,43 @@
 {
   "name": "@noelware/docker-manifest-action",
-  "description": "🐳 GitHub action to apply Docker manifest objects onto an image.",
+  "description": "🐻‍❄️🐳 Simple and tiny GitHub action to link Docker manifests easily!~",
   "version": "0.3.0",
   "main": "build/action.js",
   "license": "MIT",
   "author": "Noelware, LLC. <team@noelware.org>",
   "repository": "https://github.com/Noelware/docker-manifest-action",
   "bugs": "https://github.com/Noelware/docker-manifest-action",
+  "packageManager": "yarn@3.3.1",
   "keywords": [
     "docker",
     "docker-manifest-action",
     "manifest"
   ],
   "scripts": {
-    "build": "yarn lint && yarn fmt && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
-    "lint": "eslint src --ext .ts,.tsx --fix",
+    "build": "yarn fmt && yarn lint && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
+    "lint": "tsx --tsconfig ./scripts/tsconfig.json scripts/eslint.ts",
     "fmt": "prettier --config ./.prettierrc.json --write ."
   },
   "dependencies": {
     "@actions/core": "1.10.0",
     "@actions/exec": "1.1.1",
-    "@augu/utils": "1.5.6"
+    "@noelware/utils": "2.2.1"
   },
   "devDependencies": {
     "@augu/eslint-config": "3.0.0",
     "@augu/tsconfig": "1.1.1",
+    "@types/eslint": "8.4.10",
     "@types/node": "18.11.18",
     "@typescript-eslint/eslint-plugin": "5.49.0",
     "@typescript-eslint/parser": "5.49.0",
     "@vercel/ncc": "0.36.1",
     "eslint": "8.32.0",
     "eslint-config-prettier": "8.6.0",
+    "log-symbols": "5.1.0",
     "prettier": "2.8.3",
+    "rimraf": "4.1.2",
+    "signale": "1.4.0",
+    "tsx": "3.12.2",
     "typescript": "4.9.4"
   }
 }
