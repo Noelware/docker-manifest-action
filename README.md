@@ -49,7 +49,7 @@ Comma-seperated list of images that will be applied in the merged manifest from 
 #### Example
 
 ```yaml
-output: namespace/image:latest
+images: namespace/image:latest
 ```
 
 ### push
@@ -71,6 +71,12 @@ If the final [output](#output) image should be pushed or not.
 > Default: `false`
 
 If the action should apply the **--amend** flag to `docker manifest create` (and `docker manifest push` if [push](#push) is true). This is useful if the action has created a manifest but had errored when creating (or pushing) a merged manifest.
+
+## Common Issues
+
+### [image] is a manifest list
+
+Add **provence: false** when using the `docker/build-push-action` GitHub action before using **Noelware/docker-manifest-action**, related issue: [#131](https://github.com/Noelware/docker-manifest-action/issues/131)
 
 ## Contributing
 

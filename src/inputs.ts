@@ -52,11 +52,11 @@ export interface Input {
 }
 
 export const getInputs = (): Input | null => {
-  let inputs = getInput('inputs', { trimWhitespace: true, required: true })
+  let inputs = getInput('inputs', { trimWhitespace: true })
     .split(',')
     .map((i) => i.trim());
 
-  let outputs = getInput('images', { trimWhitespace: true, required: true })
+  let outputs = getInput('images', { trimWhitespace: true })
     .split(',')
     .map((i) => i.trim());
 
@@ -71,6 +71,11 @@ export const getInputs = (): Input | null => {
     inputs = baseImages;
   }
 
+  // Merge `base-images` into the inputs
+  if (inputs.length > 0 && baseImages.length > 0) {
+    inputs = inputs.concat(baseImages);
+  }
+
   const extraImages = getInput('extra-images', { trimWhitespace: true })
     .split(',')
     .map((i) => i.trim());
@@ -78,6 +83,11 @@ export const getInputs = (): Input | null => {
   if (outputs.length === 0 && extraImages.length > 0) {
     warning('Using the `extra-images` input has been deprecated since v0.3, please use the `outputs` input instead.');
     outputs = extraImages;
+  }
+
+  // Merge `extra-images` into the outputs
+  if (outputs.length > 0 && extraImages.length > 0) {
+    outputs = outputs.concat(extraImages);
   }
 
   // Warn if we don't have any inputs
