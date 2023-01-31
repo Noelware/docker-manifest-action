@@ -71,7 +71,7 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
 
       - name: Build playground image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           platforms: linux/amd64
           context: .
@@ -81,7 +81,7 @@ jobs:
             ghcr.io/noelware/docker-manifest-action/playground:latest-amd64
 
       - name: Build playground image (arm64)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           platforms: linux/arm64
           context: .
