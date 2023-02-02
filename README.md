@@ -76,7 +76,7 @@ If the action should apply the **--amend** flag to `docker manifest create` (and
 
 ### [image] is a manifest list
 
-Add **provence: false** when using the `docker/build-push-action` GitHub action before using **Noelware/docker-manifest-action**, related issue: [#131](https://github.com/Noelware/docker-manifest-action/issues/131)
+Add **provenance: false** when using the `docker/build-push-action` GitHub action before using **Noelware/docker-manifest-action**, related issue: [#131](https://github.com/Noelware/docker-manifest-action/issues/131)
 
 ## Contributing
 
