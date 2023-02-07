@@ -28,7 +28,7 @@
     "@augu/eslint-config": "4.0.0",
     "@augu/tsconfig": "1.1.1",
     "@types/eslint": "8.21.0",
-    "@types/node": "18.11.19",
+    "@types/node": "18.13.0",
     "@typescript-eslint/eslint-plugin": "5.51.0",
     "@typescript-eslint/parser": "5.51.0",
     "@vercel/ncc": "0.36.1",
