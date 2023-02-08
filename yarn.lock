@@ -40,9 +40,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@augu/eslint-config@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@augu/eslint-config@npm:4.0.0"
+"@augu/eslint-config@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@augu/eslint-config@npm:4.0.1"
   dependencies:
     "@typescript-eslint/eslint-plugin": ">=5.x"
     "@typescript-eslint/parser": ">=5.x"
@@ -63,7 +63,7 @@ __metadata:
       optional: true
     vue-eslint-parser:
       optional: true
-  checksum: fea5313f319c1946ecac116a3605a5925cc665af56e61b11072a7dfe32c3686eea5414a7bf1e550580c40655d4ee30a068e98cb39cdef66ff18623850178f774
+  checksum: 6f303a5ca6e8a8eb11903b00799dc83bf6984d9e32a17a1b8136576d28389180c3a84bf313f443f99e6d068726fca20372b6f1052c2820bead0f15f793f85629
   languageName: node
   linkType: hard
 
@@ -354,7 +354,7 @@ __metadata:
   dependencies:
     "@actions/core": 1.10.0
     "@actions/exec": 1.1.1
-    "@augu/eslint-config": 4.0.0
+    "@augu/eslint-config": 4.0.1
     "@augu/tsconfig": 1.1.1
     "@noelware/utils": 2.2.1
     "@types/eslint": 8.21.0
