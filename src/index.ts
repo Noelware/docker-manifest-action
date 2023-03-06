@@ -31,7 +31,10 @@ const getManifestArguments = (
   baseImage: string,
   images: string[] = [],
   amend = false
-): string[] => (amend ? ['manifest', type, '--amend', baseImage, ...images] : ['manifest', type, baseImage, ...images]);
+): string[] =>
+  amend && type === 'create'
+    ? ['manifest', type, '--amend', baseImage, ...images]
+    : ['manifest', type, baseImage, ...images];
 
 async function main() {
   const inputs = getInputs();

@@ -3,5 +3,8 @@
   "rules": {
     "@typescript-eslint/indent": "off",
     "quotes": "off"
+  },
+  "parserOptions": {
+    "project": ["tsconfig.json"]
   }
 }

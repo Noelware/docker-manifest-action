@@ -22,35 +22,39 @@ steps:
 
 ## Inputs
 
-> **Warning** -- As of v0.3, `base-image` has been renamed to `inputs` and `extra-images` has been renamed to `output`. The former inputs will work but will be deprecated into v0.4!
+> **Warning** -- As of v0.3, `base-image` has been renamed to `inputs` and `extra-images` has been renamed to `images`. The former inputs will work but will be deprecated into v0.4!
 
 ### inputs
 
-> Type: List
+> Type: String
 >
 > Required: True
+Image name(s), optionally comma separated, that the final image manifest will be called.
 
-A list of input Docker images (that were previously built) as the inputs for the merged manifests. Optionally, comma-seperate to create multiple final images with the same manifest.
 
 #### Example
 
 ```yaml
-inputs: namespace/image:latest-amd64,namespace/image:latest-arm64
+inputs: namespace/image:latest
+images: namespace/image:latest-amd64,namespace/image:latest-arm64
 ```
+In this example, the two images from `images` will be combined to create the final `inputs`.
 
 ### images
 
-> Type: List or String
+> Type: String
 >
 > Required: True
 
-Comma-seperated list of images that will be applied in the merged manifest from the [inputs](#inputs).
+Comma-seperated list of images that will be applied to the merged manifest(s) defined in [inputs](#inputs).
 
 #### Example
 
 ```yaml
-images: namespace/image:latest
+inputs: namespace/image:latest
+images: namespace/image:latest-amd64,namespace/image:latest-arm64
 ```
+In this example, the two images from `images` will be combined to create the final `inputs`.
 
 ### push
 
@@ -60,7 +64,7 @@ images: namespace/image:latest
 >
 > Default: `false`
 
-If the final [output](#output) image should be pushed or not.
+If the final [images](#images)  should be pushed or not.
 
 ### amend
 
