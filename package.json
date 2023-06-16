@@ -32,7 +32,7 @@
     "@typescript-eslint/eslint-plugin": "5.59.11",
     "@typescript-eslint/parser": "5.59.11",
     "@vercel/ncc": "0.36.1",
-    "eslint": "8.42.0",
+    "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
     "log-symbols": "5.1.0",
     "prettier": "2.8.3",
