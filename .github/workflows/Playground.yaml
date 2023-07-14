@@ -72,6 +72,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ github.token }}
+          
+      - id: repo
+        run: echo "lowercase=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
 
       - name: Build playground image
         uses: docker/build-push-action@v4
@@ -81,7 +84,7 @@ jobs:
           file: ./playground/node.Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/playground:latest-amd64
+            ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest-amd64
 
       - name: Build playground image (arm64)
         uses: docker/build-push-action@v4
@@ -91,7 +94,7 @@ jobs:
           file: ./playground/node.Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/playground:latest-arm64
+            ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest-arm64
 
       - name: Create merged manifest
         uses: ./
