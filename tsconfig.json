@@ -1,13 +1,13 @@
 {
-  "extends": "@augu/tsconfig",
-  "compilerOptions": {
-    "moduleResolution": "node",
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "rootDir": "./src",
-    "types": ["node"],
-    "outDir": "./build",
-    "skipLibCheck": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*.ts"]
+    "extends": "@augu/tsconfig",
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "typeRoots": ["./src/@types", "./node_modules/@types"],
+        "types": ["node"],
+        "outDir": "./build",
+        "skipLibCheck": true,
+        "noEmit": true
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts"]
 }

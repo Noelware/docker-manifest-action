@@ -21,78 +21,62 @@
 
 name: Action Playground
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '.github/**'
-      - '.vscode/**'
-      - '.husky/**'
-      - '.eslintignore'
-      - '.gitignore'
-      - '**.md'
-      - 'LICENSE'
-      - 'renovate.json'
-
-  pull_request:
-    types: [opened, synchronize]
-    branches:
-      - master
-    paths-ignore:
-      - '.vscode/**'
-      - '.husky/**'
-      - '.eslintignore'
-      - '.gitignore'
-      - '**.md'
-      - 'LICENSE'
-      - 'renovate.json'
+    workflow_dispatch:
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - '.github/**'
+            - '.vscode/**'
+            - '.husky/**'
+            - '.eslintignore'
+            - '.gitignore'
+            - '**.md'
+            - 'LICENSE'
+            - 'renovate.json'
 jobs:
-  playground:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+    playground:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v3
 
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          # https://github.com/docker/build-push-action/issues/761
-          driver-opts: image=moby/buildkit:v0.10.6
+            - name: Setup Docker Buildx
+              uses: docker/setup-buildx-action@v2
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
+            - name: Setup QEMU
+              uses: docker/setup-qemu-action@v2
 
-      - name: Login into GitHub's container registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: noelware
-          password: ${{secrets.GITHUB_TOKEN}}
+            - name: Login into GitHub's container registry
+              uses: docker/login-action@v2
+              with:
+                  registry: ghcr.io
+                  username: noelware
+                  password: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Build playground image
-        uses: docker/build-push-action@v4
-        with:
-          platforms: linux/amd64
-          context: .
-          file: ./playground/node.Dockerfile
-          push: true
-          tags: |
-            ghcr.io/noelware/docker-manifest-action/playground:latest-amd64
+            - name: Build playground image
+              uses: docker/build-push-action@v4
+              with:
+                  platforms: linux/amd64
+                  context: .
+                  file: ./playground/node.Dockerfile
+                  push: true
+                  tags: |
+                      ghcr.io/noelware/docker-manifest-action/playground:latest-amd64
 
-      - name: Build playground image (arm64)
-        uses: docker/build-push-action@v4
-        with:
-          platforms: linux/arm64
-          context: .
-          file: ./playground/node.Dockerfile
-          push: true
-          tags: |
-            ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+            - name: Build playground image (arm64)
+              uses: docker/build-push-action@v4
+              with:
+                  platforms: linux/arm64
+                  context: .
+                  file: ./playground/node.Dockerfile
+                  push: true
+                  tags: |
+                      ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
 
-      - name: Create merged manifest
-        uses: ./
-        with:
-          inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
-          images: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
-          push: true
+            - name: Create merged manifest
+              uses: ./
+              with:
+                  inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
+                  images: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+                  push: true

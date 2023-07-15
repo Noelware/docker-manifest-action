@@ -1,12 +1,12 @@
 {
-  "extends": "@augu/tsconfig/dom.json",
-  "compilerOptions": {
-    "moduleResolution": "node",
-    "removeComments": true,
-    "types": ["node"],
-    "rootDir": ".",
-    "noEmit": true // tsx does this, so useless for `tsc` to do it
-  },
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts"]
+    "extends": "@augu/tsconfig/dom.json",
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "removeComments": true,
+        "types": ["node"],
+        "rootDir": ".",
+        "noEmit": true // tsx does this, so useless for `tsc` to do it
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts"]
 }

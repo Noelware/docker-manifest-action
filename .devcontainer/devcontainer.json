@@ -1,18 +1,16 @@
 {
-  "name": "docker-manifest-action",
-  "image": "ghcr.io/auguwu/coder-images/node",
-  "remoteUser": "noel",
-  "containerUser": "noel",
-  "customizations": {
-    "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
+    "name": "docker-manifest-action",
+    "image": "ghcr.io/auguwu/coder-images/node",
+    "remoteUser": "noel",
+    "containerUser": "noel",
+    "customizations": {
+        "vscode": {
+            "extensions": ["dbaeumer.vscode-eslint"]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        }
     }
-  },
-  "features": {
-    // JetBrains Gateway requires an SSH connection to be available, so,
-    // this is here for that. :)
-    "ghcr.io/devcontainers/features/sshd:1": {
-      "version": "latest"
-    }
-  }
 }
