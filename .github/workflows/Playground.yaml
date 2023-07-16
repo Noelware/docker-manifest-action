@@ -37,6 +37,9 @@ on:
 jobs:
     playground:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
         steps:
             - name: Checkout the repository
               uses: actions/checkout@v3
@@ -51,8 +54,11 @@ jobs:
               uses: docker/login-action@v2
               with:
                   registry: ghcr.io
-                  username: noelware
-                  password: ${{secrets.GITHUB_TOKEN}}
+                  username: ${{ github.actor }}
+                  password: ${{ github.token }}
+          
+            - id: repo
+              run: echo "lowercase=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
 
             - name: Build playground image
               uses: docker/build-push-action@v4
@@ -62,7 +68,7 @@ jobs:
                   file: ./playground/node.Dockerfile
                   push: true
                   tags: |
-                      ghcr.io/noelware/docker-manifest-action/playground:latest-amd64
+                      ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest-amd64
 
             - name: Build playground image (arm64)
               uses: docker/build-push-action@v4
@@ -72,11 +78,13 @@ jobs:
                   file: ./playground/node.Dockerfile
                   push: true
                   tags: |
-                      ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+                      ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest-arm64
 
             - name: Create merged manifest
               uses: ./
               with:
-                  inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
-                  images: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+                  inputs: ${{ env.image }}
+                  images: ${{ env.image }}-amd64,${{ env.image }}-arm64
                   push: true
+              env:
+                  image: ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest
