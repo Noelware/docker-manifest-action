@@ -81,13 +81,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild-kit/cjs-loader@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@esbuild-kit/cjs-loader@npm:2.4.1"
+"@esbuild-kit/cjs-loader@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "@esbuild-kit/cjs-loader@npm:2.4.2"
   dependencies:
     "@esbuild-kit/core-utils": ^3.0.0
-    get-tsconfig: ^4.2.0
-  checksum: a516065907be0ead76ac2199ccb08ff92659ba5e2edb4bb8772b6a63afe4faed7eb45a3b4d87266a68c7c135c3dba971cd087bc6f16c382356e835c7dd3440f5
+    get-tsconfig: ^4.4.0
+  checksum: e346e339bfc7eff5c52c270fd0ec06a7f2341b624adfb69f84b7d83f119c35070420906f2761a0b4604e0a0ec90e35eaf12544585476c428ed6d6ee3b250c0fe
   languageName: node
   linkType: hard
 
@@ -101,13 +101,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild-kit/esm-loader@npm:^2.5.4":
-  version: 2.5.4
-  resolution: "@esbuild-kit/esm-loader@npm:2.5.4"
+"@esbuild-kit/esm-loader@npm:^2.5.5":
+  version: 2.5.5
+  resolution: "@esbuild-kit/esm-loader@npm:2.5.5"
   dependencies:
     "@esbuild-kit/core-utils": ^3.0.0
-    get-tsconfig: ^4.2.0
-  checksum: 8f4b4b6470f7afeb58ddc15ddcc4e35a6d25910133f2b21a82a793918c6f8e28768d5cd77b1c90a003f2f1c83cb476b68354580a4e04e83e2da3312afe5b5895
+    get-tsconfig: ^4.4.0
+  checksum: 9d4a03ffc937fbec75a8456c3d45d7cdb1a65768416791a5720081753502bc9f485ba27942a46f564b12483b140a8a46c12433a4496430d93e4513e430484ec7
   languageName: node
   linkType: hard
 
@@ -460,7 +460,7 @@ __metadata:
     prettier: 3.0.0
     rimraf: 5.0.1
     signale: 1.4.0
-    tsx: 3.12.2
+    tsx: 3.12.7
     typescript: 5.1.6
     vitest: 0.28.3
   languageName: unknown
@@ -2366,10 +2366,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-tsconfig@npm:^4.2.0":
-  version: 4.3.0
-  resolution: "get-tsconfig@npm:4.3.0"
-  checksum: 2597aab99aa3a24db209e192a3e5874ac47fc5abc71703ee26346e0c5816cb346ca09fc813c739db5862d3a2905d89aeca1b0cbc46c2b272398d672309aaf414
+"get-tsconfig@npm:^4.4.0":
+  version: 4.6.2
+  resolution: "get-tsconfig@npm:4.6.2"
+  dependencies:
+    resolve-pkg-maps: ^1.0.0
+  checksum: e791e671a9b55e91efea3ca819ecd7a25beae679e31c83234bf3dd62ddd93df070c1b95ae7e29d206358ebb6408f6f79ac6d83a32a3bbd6a6d217babe23de077
   languageName: node
   linkType: hard
 
@@ -3788,6 +3790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resolve-pkg-maps@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "resolve-pkg-maps@npm:1.0.0"
+  checksum: 1012afc566b3fdb190a6309cc37ef3b2dcc35dff5fa6683a9d00cd25c3247edfbc4691b91078c97adc82a29b77a2660c30d791d65dab4fc78bfc473f60289977
+  languageName: node
+  linkType: hard
+
 "resolve@npm:^1.22.1":
   version: 1.22.1
   resolution: "resolve@npm:1.22.1"
@@ -4326,20 +4335,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:3.12.2":
-  version: 3.12.2
-  resolution: "tsx@npm:3.12.2"
+"tsx@npm:3.12.7":
+  version: 3.12.7
+  resolution: "tsx@npm:3.12.7"
   dependencies:
-    "@esbuild-kit/cjs-loader": ^2.4.1
+    "@esbuild-kit/cjs-loader": ^2.4.2
     "@esbuild-kit/core-utils": ^3.0.0
-    "@esbuild-kit/esm-loader": ^2.5.4
+    "@esbuild-kit/esm-loader": ^2.5.5
     fsevents: ~2.3.2
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     tsx: dist/cli.js
-  checksum: c227512ed7b480bd295c5420c560ec8311a4827b92e8040b7ca519627c7e1d35d48c25b26b4b11277cc437bba98696149f5148a9a06334f37b48bbaa870bff64
+  checksum: ddec149ad263e5c75fc8fde5c6ba7ec2ee390934c0a2e2c23897bacab83bc8c665955a23b608a19c42f49c14a7362cf74ad793b52cc94eda684be5c2c13fdb4d
   languageName: node
   linkType: hard
 
