@@ -28,106 +28,108 @@ import { debug } from 'console';
  * Represents the action's inputs
  */
 export interface Input {
-  /**
-   * A list of input Docker images (that were previously built) as the inputs for the merged manifests.
-   * Optionally, comma-seperate to create multiple final images with the same manifest.
-   */
-  inputs: string[];
+    /**
+     * A list of input Docker images (that were previously built) as the inputs for the merged manifests.
+     * Optionally, comma-seperate to create multiple final images with the same manifest.
+     */
+    inputs: string[];
 
-  /**
-   * Comma-seperated list of images that will be applied from the {@link Input.inputs inputs}.
-   */
-  images: string[];
+    /**
+     * Comma-seperated list of images that will be applied from the {@link Input.inputs inputs}.
+     */
+    images: string[];
 
-  /**
-   * If the action should apply the **--amend** flag to `docker manifest create` (and `docker manifest push` if `push` is true).
-   * This is useful if the action has created a manifest but had errored when creating (or pushing) a merged manifest.
-   */
-  amend: boolean;
+    /**
+     * If the action should apply the **--amend** flag to `docker manifest create` (and `docker manifest push` if `push` is true).
+     * This is useful if the action has created a manifest but had errored when creating (or pushing) a merged manifest.
+     */
+    amend: boolean;
 
-  /**
-   * If the action should push the outputs to the Docker registry listed as.
-   */
-  push: boolean;
+    /**
+     * If the action should push the outputs to the Docker registry listed as.
+     */
+    push: boolean;
 }
 
 export const getInputs = (): Input | null => {
-  let inputs = getInput('inputs', { trimWhitespace: true })
-    .split(',')
-    .map((i) => i.trim());
+    let inputs = getInput('inputs', { trimWhitespace: true })
+        .split(',')
+        .map((i) => i.trim());
 
-  let outputs = getInput('images', { trimWhitespace: true })
-    .split(',')
-    .map((i) => i.trim());
+    let outputs = getInput('images', { trimWhitespace: true })
+        .split(',')
+        .map((i) => i.trim());
 
-  const push = getBooleanInput('push', { trimWhitespace: true });
-  const amend = getBooleanInput('amend', { trimWhitespace: true });
-  const baseImages = getInput('base-image', { trimWhitespace: true })
-    .split(',')
-    .map((i) => i.trim());
+    const push = getBooleanInput('push', { trimWhitespace: true });
+    const amend = getBooleanInput('amend', { trimWhitespace: true });
+    const baseImages = getInput('base-image', { trimWhitespace: true })
+        .split(',')
+        .map((i) => i.trim());
 
-  if (inputs.length === 0 && baseImages.length > 0) {
-    warning('Using the `base-image` input has been deprecated since v0.3, please use the `inputs` input instead.');
-    inputs = baseImages;
-  }
+    if (inputs.length === 0 && baseImages.length > 0) {
+        warning('Using the `base-image` input has been deprecated since v0.3, please use the `inputs` input instead.');
+        inputs = baseImages;
+    }
 
-  // Merge `base-images` into the inputs
-  if (inputs.length > 0 && baseImages.length > 0) {
-    inputs = inputs.concat(baseImages);
-  }
+    // Merge `base-images` into the inputs
+    if (inputs.length > 0 && baseImages.length > 0) {
+        inputs = inputs.concat(baseImages);
+    }
 
-  const extraImages = getInput('extra-images', { trimWhitespace: true })
-    .split(',')
-    .map((i) => i.trim());
+    const extraImages = getInput('extra-images', { trimWhitespace: true })
+        .split(',')
+        .map((i) => i.trim());
 
-  if (outputs.length === 0 && extraImages.length > 0) {
-    warning('Using the `extra-images` input has been deprecated since v0.3, please use the `outputs` input instead.');
-    outputs = extraImages;
-  }
+    if (outputs.length === 0 && extraImages.length > 0) {
+        warning(
+            'Using the `extra-images` input has been deprecated since v0.3, please use the `outputs` input instead.'
+        );
+        outputs = extraImages;
+    }
 
-  // Merge `extra-images` into the outputs
-  if (outputs.length > 0 && extraImages.length > 0) {
-    outputs = outputs.concat(extraImages);
-  }
+    // Merge `extra-images` into the outputs
+    if (outputs.length > 0 && extraImages.length > 0) {
+        outputs = outputs.concat(extraImages);
+    }
 
-  // Warn if we don't have any inputs
-  inputs = inputs.filter(Boolean);
-  if (inputs.length === 0) {
-    warning('You will need to set some inputs! Did you forget to use `,` as the seperator?');
-    debug(
-      [
-        '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
-        `Outputs => ${outputs.join(', ') || 'None'}`,
-        `Amend   => ${amend ? 'Yes' : 'No'}`,
-        `Push    => ${push ? 'Yes' : 'No'}`,
-        '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
-      ].join('\n')
-    );
+    // Warn if we don't have any inputs
+    inputs = inputs.filter(Boolean);
+    if (inputs.length === 0) {
+        warning('You will need to set some inputs! Did you forget to use `,` as the seperator?');
+        debug(
+            [
+                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
+                `Outputs => ${outputs.join(', ') || 'None'}`,
+                `Amend   => ${amend ? 'Yes' : 'No'}`,
+                `Push    => ${push ? 'Yes' : 'No'}`,
+                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
+            ].join('\n')
+        );
 
-    return null;
-  }
+        return null;
+    }
 
-  // Warn if we don't have any outputs
-  outputs = outputs.filter(Boolean);
-  if (outputs.length === 0) {
-    warning('You will need to set some outputs! Did you forget to use `,` as the seperator?');
-    debug(
-      [
-        '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
-        `Inputs => ${inputs.join(', ')}`,
-        `Amend  => ${amend ? 'Yes' : 'No'}`,
-        `Push   => ${push ? 'Yes' : 'No'}`,
-        '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
-      ].join('\n')
-    );
+    // Warn if we don't have any outputs
+    outputs = outputs.filter(Boolean);
+    if (outputs.length === 0) {
+        warning('You will need to set some outputs! Did you forget to use `,` as the seperator?');
+        debug(
+            [
+                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
+                `Inputs => ${inputs.join(', ')}`,
+                `Amend  => ${amend ? 'Yes' : 'No'}`,
+                `Push   => ${push ? 'Yes' : 'No'}`,
+                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
+            ].join('\n')
+        );
 
-    return null;
-  }
+        return null;
+    }
 
-  return {
-    inputs,
-    images: outputs,
-    push,
-    amend
-  };
+    return {
+        inputs,
+        images: outputs,
+        push,
+        amend
+    };
 };

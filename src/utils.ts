@@ -29,12 +29,12 @@ import { Stopwatch } from '@noelware/utils';
  * @param args The arguments to the function.
  */
 export async function measureAsyncFunction<F extends (...args: any[]) => Promise<any>>(
-  func: F,
-  ...args: Parameters<F>
+    func: F,
+    ...args: Parameters<F>
 ): Promise<[time: string, result: ReturnType<F>]> {
-  const stopwatch = Stopwatch.createStarted();
-  const result = await func(...args);
+    const stopwatch = Stopwatch.createStarted();
+    const result = await func(...args);
 
-  const time = stopwatch.stop()!;
-  return [time, result];
+    const time = stopwatch.stop()!;
+    return [time, result];
 }

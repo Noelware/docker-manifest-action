@@ -1,45 +1,45 @@
 {
-  "name": "@noelware/docker-manifest-action",
-  "description": "🐻‍❄️🐳 Simple and tiny GitHub action to link Docker manifests easily!~",
-  "version": "0.3.1",
-  "main": "build/action.js",
-  "license": "MIT",
-  "author": "Noelware, LLC. <team@noelware.org>",
-  "repository": "https://github.com/Noelware/docker-manifest-action",
-  "bugs": "https://github.com/Noelware/docker-manifest-action",
-  "packageManager": "yarn@3.6.1",
-  "keywords": [
-    "docker",
-    "docker-manifest-action",
-    "manifest"
-  ],
-  "scripts": {
-    "build": "yarn fmt && yarn lint && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
-    "lint": "tsx --tsconfig ./scripts/tsconfig.json scripts/eslint.ts",
-    "test": "yarn fmt && yarn lint && vitest run",
-    "fmt": "prettier --config ./.prettierrc.json --write ."
-  },
-  "dependencies": {
-    "@actions/core": "1.10.0",
-    "@actions/exec": "1.1.1",
-    "@noelware/utils": "2.3.0"
-  },
-  "devDependencies": {
-    "@augu/eslint-config": "4.0.1",
-    "@augu/tsconfig": "1.1.1",
-    "@types/eslint": "8.44.0",
-    "@types/node": "18.16.19",
-    "@typescript-eslint/eslint-plugin": "5.61.0",
-    "@typescript-eslint/parser": "5.61.0",
-    "@vercel/ncc": "0.36.1",
-    "eslint": "8.44.0",
-    "eslint-config-prettier": "8.8.0",
-    "log-symbols": "5.1.0",
-    "prettier": "2.8.3",
-    "rimraf": "5.0.1",
-    "signale": "1.4.0",
-    "tsx": "3.12.2",
-    "typescript": "5.1.6",
-    "vitest": "0.28.3"
-  }
+    "name": "@noelware/docker-manifest-action",
+    "description": "🐻‍❄️🐳 Simple and tiny GitHub action to link Docker manifests easily!~",
+    "version": "0.3.1",
+    "main": "build/action.js",
+    "license": "MIT",
+    "author": "Noelware, LLC. <team@noelware.org>",
+    "repository": "https://github.com/Noelware/docker-manifest-action",
+    "bugs": "https://github.com/Noelware/docker-manifest-action",
+    "packageManager": "yarn@3.6.1",
+    "keywords": [
+        "docker",
+        "docker-manifest-action",
+        "manifest"
+    ],
+    "scripts": {
+        "build": "yarn fmt && yarn lint && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
+        "lint": "tsx --tsconfig ./scripts/tsconfig.json scripts/eslint.ts",
+        "test": "yarn fmt && yarn lint && vitest run",
+        "fmt": "prettier --config ./.prettierrc.json --write ."
+    },
+    "dependencies": {
+        "@actions/core": "1.10.0",
+        "@actions/exec": "1.1.1",
+        "@noelware/utils": "2.3.0"
+    },
+    "devDependencies": {
+        "@augu/eslint-config": "4.0.1",
+        "@augu/tsconfig": "1.1.1",
+        "@types/eslint": "8.44.0",
+        "@types/node": "18.16.19",
+        "@typescript-eslint/eslint-plugin": "6.0.0",
+        "@typescript-eslint/parser": "6.0.0",
+        "@vercel/ncc": "0.36.1",
+        "eslint": "8.45.0",
+        "eslint-config-prettier": "8.8.0",
+        "log-symbols": "5.1.0",
+        "prettier": "3.0.0",
+        "rimraf": "5.0.1",
+        "signale": "1.4.0",
+        "tsx": "3.12.2",
+        "typescript": "5.1.6",
+        "vitest": "0.28.3"
+    }
 }

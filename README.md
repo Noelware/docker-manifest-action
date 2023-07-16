@@ -10,14 +10,14 @@ Do note that **docker-manifest-action** is in beta stages (and might not work pr
 
 ```yaml
 on:
-  push:
+    push:
 steps:
-  - name: Create and push manifest images
-    uses: Noelware/docker-manifest-action@master # or use a pinned version in the Releases tab
-    with:
-      inputs: namespace/image:latest
-      images: namespace/image:latest-amd64[,namespace/other-image:latest-arm64]
-      push: true
+    - name: Create and push manifest images
+      uses: Noelware/docker-manifest-action@master # or use a pinned version in the Releases tab
+      with:
+          inputs: namespace/image:latest
+          images: namespace/image:latest-amd64[,namespace/other-image:latest-arm64]
+          push: true
 ```
 
 ## Inputs
@@ -29,8 +29,7 @@ steps:
 > Type: String
 >
 > Required: True
-Image name(s), optionally comma separated, that the final image manifest will be called.
-
+> Image name(s), optionally comma separated, that the final image manifest will be called.
 
 #### Example
 
@@ -38,6 +37,7 @@ Image name(s), optionally comma separated, that the final image manifest will be
 inputs: namespace/image:latest
 images: namespace/image:latest-amd64,namespace/image:latest-arm64
 ```
+
 In this example, the two images from `images` will be combined to create the final `inputs`.
 
 ### images
@@ -54,6 +54,7 @@ Comma-seperated list of images that will be applied to the merged manifest(s) de
 inputs: namespace/image:latest
 images: namespace/image:latest-amd64,namespace/image:latest-arm64
 ```
+
 In this example, the two images from `images` will be combined to create the final `inputs`.
 
 ### push
@@ -64,7 +65,7 @@ In this example, the two images from `images` will be combined to create the fin
 >
 > Default: `false`
 
-If the final [images](#images)  should be pushed or not.
+If the final [images](#images) should be pushed or not.
 
 ### amend
 
@@ -86,19 +87,19 @@ Add **provenance: false** when using the `docker/build-push-action` GitHub actio
 
 Thanks for considering contributing to **docker-manifest-action**! Before you boop your heart out on your keyboard ✧ ─=≡Σ((( つ•̀ω•́)つ, we recommend you to do the following:
 
-- Read the [Code of Conduct](./.github/CODE_OF_CONDUCT.md)
-- Read the [Contributing Guide](./.github/CONTRIBUTING.md)
+-   Read the [Code of Conduct](./.github/CODE_OF_CONDUCT.md)
+-   Read the [Contributing Guide](./.github/CONTRIBUTING.md)
 
 If you read both if you're a new time contributor, now you can do the following:
 
-- [Fork me! ＊\*♡( ⁎ᵕᴗᵕ⁎ ）](https://github.com/Noelware/docker-manifest-action/fork)
-- Clone your fork on your machine: `git clone https://github.com/your-username/docker-manifest-action`
-- Create a new branch: `git checkout -b some-branch-name`
-- Run `corepack enable` and use `yarn` for this project
-- BOOP THAT KEYBOARD!!!! ♡┉ˏ͛ (❛ 〰 ❛)ˊˎ┉♡
-- Commit your changes onto your branch: `git commit -am "add features （｡>‿‿<｡ ）"`
-- Push it to the fork you created: `git push -u origin some-branch-name`
-- Submit a Pull Request and then cry! ｡･ﾟﾟ･(థ Д థ。)･ﾟﾟ･｡
+-   [Fork me! ＊\*♡( ⁎ᵕᴗᵕ⁎ ）](https://github.com/Noelware/docker-manifest-action/fork)
+-   Clone your fork on your machine: `git clone https://github.com/your-username/docker-manifest-action`
+-   Create a new branch: `git checkout -b some-branch-name`
+-   Run `corepack enable` and use `yarn` for this project
+-   BOOP THAT KEYBOARD!!!! ♡┉ˏ͛ (❛ 〰 ❛)ˊˎ┉♡
+-   Commit your changes onto your branch: `git commit -am "add features （｡>‿‿<｡ ）"`
+-   Push it to the fork you created: `git push -u origin some-branch-name`
+-   Submit a Pull Request and then cry! ｡･ﾟﾟ･(థ Д థ。)･ﾟﾟ･｡
 
 ## License
 

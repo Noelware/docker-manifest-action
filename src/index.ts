@@ -27,58 +27,60 @@ import * as core from '@actions/core';
 import { exec } from '@actions/exec';
 
 const getManifestArguments = (
-  type: 'create' | 'push',
-  baseImage: string,
-  images: string[] = [],
-  amend = false
+    type: 'create' | 'push',
+    baseImage: string,
+    images: string[] = [],
+    amend = false
 ): string[] =>
-  amend && type === 'create'
-    ? ['manifest', type, '--amend', baseImage, ...images]
-    : ['manifest', type, baseImage, ...images];
+    amend && type === 'create'
+        ? ['manifest', type, '--amend', baseImage, ...images]
+        : ['manifest', type, baseImage, ...images];
 
 async function main() {
-  const inputs = getInputs();
-  if (inputs === null) {
-    process.exitCode = 1;
-    return;
-  }
+    const inputs = getInputs();
+    if (inputs === null) {
+        process.exitCode = 1;
+        return;
+    }
 
-  core.startGroup('Inputs');
-  {
-    core.info(`Images to Merge => ${inputs.images.join(', ')}`);
-    core.info(`Base Images     => ${inputs.inputs.join(', ')}`);
-    core.info(`Amend?          => ${inputs.amend ? 'Yes' : 'No'}`);
-    core.info(`Push?           => ${inputs.push ? 'Yes' : 'No'}`);
-  }
-  core.endGroup();
+    core.startGroup('Inputs');
+    {
+        core.info(`Images to Merge => ${inputs.images.join(', ')}`);
+        core.info(`Base Images     => ${inputs.inputs.join(', ')}`);
+        core.info(`Amend?          => ${inputs.amend ? 'Yes' : 'No'}`);
+        core.info(`Push?           => ${inputs.push ? 'Yes' : 'No'}`);
+    }
+    core.endGroup();
 
-  await Promise.all(
-    inputs.inputs.map(async (image) => {
-      core.info(`Creating manifest for image [${image}] with [${inputs.images.join(', ')}] outputs`);
-      const [time, res] = await util.measureAsyncFunction(() =>
-        exec('docker', getManifestArguments('create', image, inputs.images, inputs.amend))
-      );
+    await Promise.all(
+        inputs.inputs.map(async (image) => {
+            core.info(`Creating manifest for image [${image}] with [${inputs.images.join(', ')}] outputs`);
+            const [time, res] = await util.measureAsyncFunction(() =>
+                exec('docker', getManifestArguments('create', image, inputs.images, inputs.amend))
+            );
 
-      core.info(
-        `Took ${time} to create manifest for image [${image}] with [${inputs.images.join(', ')}] as the outputs!`
-      );
+            core.info(
+                `Took ${time} to create manifest for image [${image}] with [${inputs.images.join(
+                    ', '
+                )}] as the outputs!`
+            );
 
-      core.debug(`$ docker ${getManifestArguments('create', image, inputs.images, inputs.amend)}\n${res}`);
+            core.debug(`$ docker ${getManifestArguments('create', image, inputs.images, inputs.amend)}\n${res}`);
 
-      if (inputs.push) {
-        core.info(`Now pushing image ${image}`);
-        const [other, result] = await util.measureAsyncFunction(() =>
-          exec('docker', getManifestArguments('push', image, [], inputs.amend))
-        );
+            if (inputs.push) {
+                core.info(`Now pushing image ${image}`);
+                const [other, result] = await util.measureAsyncFunction(() =>
+                    exec('docker', getManifestArguments('push', image, [], inputs.amend))
+                );
 
-        core.info(`Took ${other} to push image [${image}]`);
-        core.debug(`$ docker ${getManifestArguments('push', image, [], inputs.amend)}\n${result}`);
-      }
-    })
-  );
+                core.info(`Took ${other} to push image [${image}]`);
+                core.debug(`$ docker ${getManifestArguments('push', image, [], inputs.amend)}\n${result}`);
+            }
+        })
+    );
 }
 
 main().catch((ex) => {
-  core.error(ex);
-  process.exit(1);
+    core.error(ex);
+    process.exit(1);
 });

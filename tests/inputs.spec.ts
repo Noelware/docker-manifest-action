@@ -25,66 +25,66 @@ import { test, expect, describe, beforeEach } from 'vitest';
 import { getInputs } from '../src/inputs';
 
 describe('Inputs', () => {
-  beforeEach(() => {
-    process.env = Object.keys(process.env).reduce((acc, curr) => {
-      if (!curr.startsWith('INPUT_')) {
-        acc[curr] = process.env[curr];
-      }
+    beforeEach(() => {
+        process.env = Object.keys(process.env).reduce((acc, curr) => {
+            if (!curr.startsWith('INPUT_')) {
+                acc[curr] = process.env[curr];
+            }
 
-      return acc;
-    }, {});
-  });
+            return acc;
+        }, {});
+    });
 
-  test('resolve deprecated inputs', () => {
-    setInput('base-image', 'namespace/image:latest');
-    setInput('extra-images', 'namespace/image:latest-amd64,namespace/image:latest-arm64');
-    setInput('push', 'false');
-    setInput('amend', 'false');
+    test('resolve deprecated inputs', () => {
+        setInput('base-image', 'namespace/image:latest');
+        setInput('extra-images', 'namespace/image:latest-amd64,namespace/image:latest-arm64');
+        setInput('push', 'false');
+        setInput('amend', 'false');
 
-    const inputs = getInputs();
-    expect(inputs).not.toBeNull();
-    expect(inputs!.amend).toBeFalsy();
-    expect(inputs!.push).toBeFalsy();
-    expect(inputs!.images).toStrictEqual(['namespace/image:latest-amd64', 'namespace/image:latest-arm64']);
-    expect(inputs!.inputs).toStrictEqual(['namespace/image:latest']);
-  });
+        const inputs = getInputs();
+        expect(inputs).not.toBeNull();
+        expect(inputs!.amend).toBeFalsy();
+        expect(inputs!.push).toBeFalsy();
+        expect(inputs!.images).toStrictEqual(['namespace/image:latest-amd64', 'namespace/image:latest-arm64']);
+        expect(inputs!.inputs).toStrictEqual(['namespace/image:latest']);
+    });
 
-  test('resolve new and deprecated inputs', () => {
-    setInput('base-image', 'namespace/image:latest');
-    setInput('extra-images', 'namespace/image:latest-amd64,namespace/image:latest-arm64');
-    setInput('push', 'false');
-    setInput('amend', 'false');
-    setInput('inputs', 'woah/owo:latest');
-    setInput('images', 'woah/owo:latest-arm64');
+    test('resolve new and deprecated inputs', () => {
+        setInput('base-image', 'namespace/image:latest');
+        setInput('extra-images', 'namespace/image:latest-amd64,namespace/image:latest-arm64');
+        setInput('push', 'false');
+        setInput('amend', 'false');
+        setInput('inputs', 'woah/owo:latest');
+        setInput('images', 'woah/owo:latest-arm64');
 
-    const inputs = getInputs();
-    expect(inputs).not.toBeNull();
-    expect(inputs!.amend).toBeFalsy();
-    expect(inputs!.push).toBeFalsy();
-    expect(inputs!.images).toStrictEqual([
-      'woah/owo:latest-arm64',
-      'namespace/image:latest-amd64',
-      'namespace/image:latest-arm64'
-    ]);
+        const inputs = getInputs();
+        expect(inputs).not.toBeNull();
+        expect(inputs!.amend).toBeFalsy();
+        expect(inputs!.push).toBeFalsy();
+        expect(inputs!.images).toStrictEqual([
+            'woah/owo:latest-arm64',
+            'namespace/image:latest-amd64',
+            'namespace/image:latest-arm64'
+        ]);
 
-    expect(inputs!.inputs).toStrictEqual(['woah/owo:latest', 'namespace/image:latest']);
-  });
+        expect(inputs!.inputs).toStrictEqual(['woah/owo:latest', 'namespace/image:latest']);
+    });
 
-  test('inputs should be null if `inputs` is not defined', () => {
-    setInput('images', 'woah/owo:latest-arm64,woah/owo:latest-amd64');
-    setInput('push', 'false');
-    setInput('amend', 'false');
+    test('inputs should be null if `inputs` is not defined', () => {
+        setInput('images', 'woah/owo:latest-arm64,woah/owo:latest-amd64');
+        setInput('push', 'false');
+        setInput('amend', 'false');
 
-    const inputs = getInputs();
-    expect(inputs).toBeNull();
-  });
+        const inputs = getInputs();
+        expect(inputs).toBeNull();
+    });
 });
 
 // See: https://github.com/actions/toolkit/blob/a1b068ec31a042ff1e10a522d8fdf0b8869d53ca/packages/core/src/core.ts#L89
 function getInputName(name: string) {
-  return `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
+    return `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
 }
 
 function setInput(name: string, value: string) {
-  process.env[getInputName(name)] = value;
+    process.env[getInputName(name)] = value;
 }

@@ -27,82 +27,82 @@ import { Signale } from 'signale';
 import { ESLint } from 'eslint';
 
 const log = new Signale({
-  scope: 'docker-manifest-action:eslint',
-  config: {
-    displayBadge: true,
-    displayScope: true,
-    displayTimestamp: true,
-    displayDate: true
-  }
+    scope: 'docker-manifest-action:eslint',
+    config: {
+        displayBadge: true,
+        displayScope: true,
+        displayTimestamp: true,
+        displayDate: true
+    }
 });
 
 async function main() {
-  const symbols = await import('log-symbols').then((f) => f.default);
-  const eslint = new ESLint({
-    useEslintrc: true,
+    const symbols = await import('log-symbols').then((f) => f.default);
+    const eslint = new ESLint({
+        useEslintrc: true,
 
-    // if we aren't in ci, use the --fix flag to fix
-    // the issues
-    fix: process.env.CI === undefined
-  });
+        // if we aren't in ci, use the --fix flag to fix
+        // the issues
+        fix: process.env.CI === undefined
+    });
 
-  // Lint frontend code
-  log.info('Linting source code...');
-  const results = await eslint.lintFiles('src/**/*.{ts,tsx}');
-  for (const result of results) {
-    const path = relative(resolve(__dirname, '..', 'src'), result.filePath);
-    const hasErrors = result.errorCount > 0;
-    const hasWarnings = result.warningCount > 0;
-    const symbol = hasErrors ? symbols.error : hasWarnings ? symbols.warning : symbols.success;
+    // Lint frontend code
+    log.info('Linting source code...');
+    const results = await eslint.lintFiles('src/**/*.{ts,tsx}');
+    for (const result of results) {
+        const path = relative(resolve(__dirname, '..', 'src'), result.filePath);
+        const hasErrors = result.errorCount > 0;
+        const hasWarnings = result.warningCount > 0;
+        const symbol = hasErrors ? symbols.error : hasWarnings ? symbols.warning : symbols.success;
 
-    log.info(`${symbol}   src/${path}`);
-    for (const message of result.messages) {
-      const s = message.severity === 1 ? symbols.warning : symbols.error;
-      if (process.env.CI !== undefined) {
-        const method = message.severity === 1 ? warning : error;
-        method(`${s} ${message.message} (${message.ruleId})`, {
-          endColumn: message.endColumn,
-          endLine: message.endLine,
-          file: result.filePath,
-          startLine: message.line,
-          startColumn: message.column
-        });
-      } else {
-        const method = message.severity === 1 ? log.warn : log.error;
-        method(`    * ${s}   ${message.message} (${message.ruleId})`);
-      }
+        log.info(`${symbol}   src/${path}`);
+        for (const message of result.messages) {
+            const s = message.severity === 1 ? symbols.warning : symbols.error;
+            if (process.env.CI !== undefined) {
+                const method = message.severity === 1 ? warning : error;
+                method(`${s} ${message.message} (${message.ruleId})`, {
+                    endColumn: message.endColumn,
+                    endLine: message.endLine,
+                    file: result.filePath,
+                    startLine: message.line,
+                    startColumn: message.column
+                });
+            } else {
+                const method = message.severity === 1 ? log.warn : log.error;
+                method(`    * ${s}   ${message.message} (${message.ruleId})`);
+            }
+        }
     }
-  }
 
-  log.info('Linting scripts...');
-  const results2 = await eslint.lintFiles('scripts/**/*.ts');
-  for (const result of results2) {
-    const path = relative(resolve(__dirname, '..', 'scripts'), result.filePath);
-    const hasErrors = result.errorCount > 0;
-    const hasWarnings = result.warningCount > 0;
-    const symbol = hasErrors ? symbols.error : hasWarnings ? symbols.warning : symbols.success;
+    log.info('Linting scripts...');
+    const results2 = await eslint.lintFiles('scripts/**/*.ts');
+    for (const result of results2) {
+        const path = relative(resolve(__dirname, '..', 'scripts'), result.filePath);
+        const hasErrors = result.errorCount > 0;
+        const hasWarnings = result.warningCount > 0;
+        const symbol = hasErrors ? symbols.error : hasWarnings ? symbols.warning : symbols.success;
 
-    log.info(`${symbol}   scripts/${path}`);
-    for (const message of result.messages) {
-      const s = message.severity === 1 ? symbols.warning : symbols.error;
-      if (process.env.CI !== undefined) {
-        const method = message.severity === 1 ? warning : error;
-        method(`${s} ${message.message} (${message.ruleId})`, {
-          endColumn: message.endColumn,
-          endLine: message.endLine,
-          file: result.filePath,
-          startLine: message.line,
-          startColumn: message.column
-        });
-      } else {
-        const method = message.severity === 1 ? log.warn : log.error;
-        method(`    * ${s}   ${message.message} (${message.ruleId})`);
-      }
+        log.info(`${symbol}   scripts/${path}`);
+        for (const message of result.messages) {
+            const s = message.severity === 1 ? symbols.warning : symbols.error;
+            if (process.env.CI !== undefined) {
+                const method = message.severity === 1 ? warning : error;
+                method(`${s} ${message.message} (${message.ruleId})`, {
+                    endColumn: message.endColumn,
+                    endLine: message.endLine,
+                    file: result.filePath,
+                    startLine: message.line,
+                    startColumn: message.column
+                });
+            } else {
+                const method = message.severity === 1 ? log.warn : log.error;
+                method(`    * ${s}   ${message.message} (${message.ruleId})`);
+            }
+        }
     }
-  }
 }
 
 main().catch((ex) => {
-  log.error(ex);
-  process.exit(1);
+    log.error(ex);
+    process.exit(1);
 });

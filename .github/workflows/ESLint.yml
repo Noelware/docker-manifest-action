@@ -21,57 +21,54 @@
 
 name: ESLint
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '.github/**'
-      - '.vscode/**'
-      - '.husky/**'
-      - '.eslintignore'
-      - '.gitignore'
-      - '**.md'
-      - 'LICENSE'
-      - 'renovate.json'
+    workflow_dispatch:
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - '.github/**'
+            - '.vscode/**'
+            - '.husky/**'
+            - '.eslintignore'
+            - '.gitignore'
+            - '**.md'
+            - 'LICENSE'
+            - 'renovate.json'
 
-  pull_request:
-    types: [opened, synchronize]
-    branches:
-      - master
-    paths-ignore:
-      - '.vscode/**'
-      - '.husky/**'
-      - '.eslintignore'
-      - '.gitignore'
-      - '**.md'
-      - 'LICENSE'
-      - 'renovate.json'
+    pull_request:
+        types: [opened, synchronize]
+        branches:
+            - master
+        paths-ignore:
+            - '.vscode/**'
+            - '.husky/**'
+            - '.eslintignore'
+            - '.gitignore'
+            - '**.md'
+            - 'LICENSE'
+            - 'renovate.json'
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x, 19.x]
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v3
 
-      - name: Uses Node.js ${{matrix.node-version}}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{matrix.node-version}}
+            - name: Uses Node.js 20.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 20.x
 
-      - name: Setup Yarn and node-modules cache
-        id: yarn-cache
-        uses: auguwu/node-pm-action@master
+            - name: Setup Yarn and node-modules cache
+              id: yarn-cache
+              uses: auguwu/node-pm-action@master
 
-      - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true' || steps.yarn-cache.outputs.node-modules-cache-hit != 'true'
-        run: yarn install --immutable
+            - name: Install dependencies
+              if: steps.yarn-cache.outputs.cache-hit != 'true' || steps.yarn-cache.outputs.node-modules-cache-hit != 'true'
+              run: yarn install --immutable
 
-      - name: Lint project with ESLint
-        run: yarn lint
+            - name: Lint project with ESLint
+              run: yarn lint
 
-      - name: Run all tests
-        run: yarn test
+            - name: Run all tests
+              run: yarn test
