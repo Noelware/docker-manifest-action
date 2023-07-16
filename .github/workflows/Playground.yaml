@@ -83,6 +83,8 @@ jobs:
             - name: Create merged manifest
               uses: ./
               with:
-                  inputs: ghcr.io/${{ github.repository }}/playground:latest
-                  images: ghcr.io/${{ github.repository }}/playground:latest-amd64,ghcr.io/${{ github.repository }}/playground:latest-arm64
+                  inputs: ${{ env.image }}
+                  images: ${{ env.image }}-amd64,${{ env.image }}-arm64
                   push: true
+              env:
+                  image: ghcr.io/${{ steps.repo.outputs.lowercase }}/playground:latest
