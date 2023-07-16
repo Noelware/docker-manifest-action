@@ -33,12 +33,12 @@ runs:
 
 inputs:
     inputs:
-        description: A list of input Docker images (that were previously built) as the inputs for the merged manifests. Optionally, comma-seperate to create multiple final images with the same manifest.
+        description: A list of input Docker images (that were previously built) as the inputs for the merged manifests. Optionally, comma-separate to create multiple final images with the same manifest.
         required: false
         default: ''
 
     images:
-        description: Comma-seperated list of images that will be applied in the merged manifest from the `inputs`.
+        description: Comma-separated list of images that will be applied in the merged manifest from the `inputs`.
         required: false
         default: ''
 
@@ -63,3 +63,7 @@ inputs:
             This is useful if the action has created a manifest but had errored when creating (or pushing) a merged manifest.
         required: false
         default: 'false'
+
+outputs:
+    images:
+        description: Comma-separated list of pushed images.

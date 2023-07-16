@@ -29,7 +29,8 @@ steps:
 > Type: String
 >
 > Required: True
-> Image name(s), optionally comma separated, that the final image manifest will be called.
+
+Image name(s), optionally comma separated, that the final image manifest will be called.
 
 #### Example
 
