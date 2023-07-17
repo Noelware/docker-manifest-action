@@ -1,9 +1,13 @@
 {
-    "extends": ["prettier", "@augu/eslint-config/ts.js"],
-    "rules": {
-        "@typescript-eslint/await-thenable": "off"
-    },
-    "parserOptions": {
-        "project": "./tsconfig.json"
-    }
+    "extends": ["prettier", "@augu/eslint-config"],
+    "parser": "@typescript-eslint/parser",
+    "ignorePatterns": ["**/*.md", "LICENSE"],
+    "overrides": [
+        {
+            "files": ["**/*.ts", "**/*.spec.ts"],
+            "parserOptions": {
+                "project": "./tsconfig.json"
+            }
+        }
+    ]
 }

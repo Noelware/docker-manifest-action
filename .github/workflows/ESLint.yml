@@ -61,10 +61,9 @@ jobs:
 
             - name: Setup Yarn and node-modules cache
               id: yarn-cache
-              uses: auguwu/node-pm-action@master
+              uses: auguwu/node-pm-action@v1.0.1
 
             - name: Install dependencies
-              if: steps.yarn-cache.outputs.cache-hit != 'true' || steps.yarn-cache.outputs.node-modules-cache-hit != 'true'
               run: yarn install --immutable
 
             - name: Lint project with ESLint
