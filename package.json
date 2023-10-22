@@ -34,7 +34,7 @@
         "@vercel/ncc": "0.38.1",
         "eslint": "8.52.0",
         "eslint-config-prettier": "9.0.0",
-        "log-symbols": "5.1.0",
+        "log-symbols": "6.0.0",
         "prettier": "3.0.3",
         "rimraf": "5.0.5",
         "signale": "1.4.0",
