@@ -439,7 +439,7 @@ __metadata:
     prettier: 3.1.0
     rimraf: 5.0.5
     signale: 1.4.0
-    tsx: 4.2.0
+    tsx: 4.3.0
     typescript: 5.3.2
     vitest: 0.34.6
   languageName: unknown
@@ -1151,13 +1151,6 @@ __metadata:
   dependencies:
     fill-range: ^7.0.1
   checksum: e2a8e769a863f3d4ee887b5fe21f63193a891c68b612ddb4b68d82d1b5f3ff9073af066c343e9867a393fe4c2555dcb33e89b937195feb9c1613d259edfcd459
-  languageName: node
-  linkType: hard
-
-"buffer-from@npm:^1.0.0":
-  version: 1.1.2
-  resolution: "buffer-from@npm:1.1.2"
-  checksum: 0448524a562b37d4d7ed9efd91685a5b77a50672c556ea254ac9a6d30e3403a517d8981f10e565db24e8339413b43c97ca2951f10e399c6125a0d8911f5679bb
   languageName: node
   linkType: hard
 
@@ -3899,23 +3892,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.21":
-  version: 0.5.21
-  resolution: "source-map-support@npm:0.5.21"
-  dependencies:
-    buffer-from: ^1.0.0
-    source-map: ^0.6.0
-  checksum: 43e98d700d79af1d36f859bdb7318e601dfc918c7ba2e98456118ebc4c4872b327773e5a1df09b0524e9e5063bb18f0934538eace60cca2710d1fa687645d137
-  languageName: node
-  linkType: hard
-
-"source-map@npm:^0.6.0":
-  version: 0.6.1
-  resolution: "source-map@npm:0.6.1"
-  checksum: 59ce8640cf3f3124f64ac289012c2b8bd377c238e316fb323ea22fbfe83da07d81e000071d7242cad7a23cd91c7de98e4df8830ec3f133cb6133a5f6e9f67bc2
-  languageName: node
-  linkType: hard
-
 "ssri@npm:^9.0.0":
   version: 9.0.1
   resolution: "ssri@npm:9.0.1"
@@ -4152,20 +4128,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.2.0":
-  version: 4.2.0
-  resolution: "tsx@npm:4.2.0"
+"tsx@npm:4.3.0":
+  version: 4.3.0
+  resolution: "tsx@npm:4.3.0"
   dependencies:
     esbuild: ~0.18.20
     fsevents: ~2.3.3
     get-tsconfig: ^4.7.2
-    source-map-support: ^0.5.21
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: d72322a82731e3c88a22c101fc7c5129728487a3c14234eae2076960ca9eee39e1db98a5cb5a92135f2d9095e3a0fd975ea6c703bac70cc97aaf71d088da90c1
+  checksum: c506d47abce058b295f5e84065631dec5d78d1f54317b6db087e49a90802ae81f35d343ce9a6c2f0230d57d9c3a92b2abbe6334bdd91b84c72e61aaa47b53d60
   languageName: node
   linkType: hard
 
