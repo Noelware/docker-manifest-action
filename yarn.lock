@@ -439,7 +439,7 @@ __metadata:
     prettier: 3.1.0
     rimraf: 5.0.5
     signale: 1.4.0
-    tsx: 4.3.0
+    tsx: 4.4.0
     typescript: 5.3.2
     vitest: 0.34.6
   languageName: unknown
@@ -4128,9 +4128,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.3.0":
-  version: 4.3.0
-  resolution: "tsx@npm:4.3.0"
+"tsx@npm:4.4.0":
+  version: 4.4.0
+  resolution: "tsx@npm:4.4.0"
   dependencies:
     esbuild: ~0.18.20
     fsevents: ~2.3.3
@@ -4140,7 +4140,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: c506d47abce058b295f5e84065631dec5d78d1f54317b6db087e49a90802ae81f35d343ce9a6c2f0230d57d9c3a92b2abbe6334bdd91b84c72e61aaa47b53d60
+  checksum: d5cf459013ef84143cbc989ec4b3e3e507dacd7becb4f1e7f63f36f537b446beefe6ddd0568990c225be7215457343ee9149beddf7d1f852ff5c7b5e8c59dd34
   languageName: node
   linkType: hard
 
