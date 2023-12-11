@@ -74,10 +74,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@augu/tsconfig@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@augu/tsconfig@npm:1.1.1"
-  checksum: b734975ae5362ac16de2c6be189b82d204e6744f4d23b2bdf1e7f4176994a2cf31967e8678ebf350a1404d2e308d7b87d35af176ecd043228d30aab674122e0c
+"@augu/tsconfig@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@augu/tsconfig@npm:1.2.0"
+  checksum: 64ef5d2479f0185ee9eb5805d985b0afc60565d0430e1bbf9c864559fa4906c7bfee07cf7cdd2b82f81da0efdc42fe7c58f952860961c79e853d5c90033c1ca1
   languageName: node
   linkType: hard
 
@@ -580,7 +580,7 @@ __metadata:
     "@actions/core": 1.10.1
     "@actions/exec": 1.1.1
     "@augu/eslint-config": 4.0.1
-    "@augu/tsconfig": 1.1.1
+    "@augu/tsconfig": 1.2.0
     "@noelware/utils": 2.4.0
     "@types/eslint": 8.44.8
     "@types/node": 20.10.4
