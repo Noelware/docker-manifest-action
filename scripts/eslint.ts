@@ -43,6 +43,8 @@ export async function main() {
     });
 
     const formatter = await linter.loadFormatter('codeframe');
+    let hasFailed = false;
+
     log.startGroup(`linting directory [${resolve(ROOT)}]`);
     for (const file of await globby('**/*.ts')) {
         if (file.includes('node_modules') || file.includes('dist')) {
@@ -75,6 +77,7 @@ export async function main() {
                             continue;
 
                         case 2:
+                            hasFailed = true;
                             log.error(
                                 `${
                                     colors.isColorSupported ? colors.bold(colors.red('FAILED')) : 'FAILED'
@@ -99,11 +102,10 @@ export async function main() {
     }
 
     log.endGroup();
+    process.exit(hasFailed ? 1 : 0);
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-    main().catch((ex) => {
-        log.error(ex);
-        process.exit(1);
-    });
-}
+main().catch((ex) => {
+    log.error(ex);
+    process.exit(1);
+});

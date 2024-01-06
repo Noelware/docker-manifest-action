@@ -39,8 +39,9 @@ export async function main() {
         throw new Error(`was unable to resolve Prettier config in [${resolve(ROOT, '.prettierrc.json')}] ?!`);
     }
 
+    let hasFailed = false;
     for (const file of await globby('**/*.{ts,js,md,yaml,yml,json}')) {
-        if (file.includes('node_modules') || file.includes('dist')) {
+        if (file.includes('node_modules') || file.includes('build')) {
             continue;
         }
 
@@ -74,7 +75,8 @@ export async function main() {
                     }
                 );
 
-                continue;
+                hasFailed = true;
+                break;
             }
 
             log.info(
@@ -95,12 +97,10 @@ export async function main() {
     }
 
     log.endGroup();
-    process.exit(0);
+    process.exit(hasFailed ? 1 : 0);
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-    main().catch((ex) => {
-        log.error(ex);
-        process.exit(1);
-    });
-}
+main().catch((ex) => {
+    log.error(ex);
+    process.exit(1);
+});
