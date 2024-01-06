@@ -1,4 +1,4 @@
-# 🐻‍❄️🐳 Docker Manifest GitHub Action
+# 🐻‍❄️🐳 docker-manifest-action
 
 > _Simple and tiny GitHub action to link [Docker manifests](https://docs.docker.com/engine/reference/commandline/manifest) easily._
 

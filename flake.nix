@@ -18,7 +18,34 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+{
+  description = "🐳 Simple and tiny GitHub action to link Docker manifests easily";
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    flake-utils.url = github:numtide/flake-utils;
+    flake-compat = {
+      url = github:edolstra/flake-compat;
+      flake = false;
+    };
+  };
 
-FROM ghcr.io/auguwu/coder-images/node
-
-RUN echo 'woof'
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in {
+      devShells.default = pkgs.mkShell {
+        name = "docker-manifest-action";
+        buildInputs = with pkgs; [
+          nodePackages.yarn
+          nodejs_20
+        ];
+      };
+    });
+}

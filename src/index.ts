@@ -1,6 +1,6 @@
 /*
- * 🐳 Docker Manifest GitHub Action: Simple and tiny GitHub action to link Docker manifests easily.
- * Copyright (c) 2022-2023 Noelware, LLC. <team@noelware.org>
+ * 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+ * Copyright (c) 2022-2024 Noelware, LLC. <team@noelware.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

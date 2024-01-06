@@ -18,7 +18,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-FROM ghcr.io/auguwu/coder-images/node
-
-RUN echo 'woof'
+let
+  lockfile = builtins.fromJSON (builtins.readFile ./flake.lock);
+  compat = builtins.fetchTarball {
+    url = "https://github.com/edolstra/flake-compat/archive/${lockfile.nodes.flake-compat.locked.rev}.tar.gz";
+    sha256 = "${lockfile.nodes.flake-compat.locked.narHash}";
+  };
+in
+  (import compat {src = ./.;}).shellNix.default
