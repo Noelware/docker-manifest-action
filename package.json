@@ -25,7 +25,7 @@
         "@noelware/utils": "2.4.0"
     },
     "devDependencies": {
-        "@augu/eslint-config": "4.0.1",
+        "@augu/eslint-config": "5.0.0",
         "@augu/tsconfig": "1.2.0",
         "@types/eslint": "8.56.1",
         "@types/node": "20.10.6",
