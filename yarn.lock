@@ -417,7 +417,7 @@ __metadata:
     "@augu/tsconfig": "npm:1.2.0"
     "@noelware/utils": "npm:2.4.0"
     "@types/eslint": "npm:8.56.2"
-    "@types/node": "npm:20.11.2"
+    "@types/node": "npm:20.11.3"
     "@typescript-eslint/eslint-plugin": "npm:6.19.0"
     "@typescript-eslint/parser": "npm:6.19.0"
     "@vercel/ncc": "npm:0.38.1"
@@ -600,12 +600,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.11.2":
-  version: 20.11.2
-  resolution: "@types/node@npm:20.11.2"
+"@types/node@npm:20.11.3":
+  version: 20.11.3
+  resolution: "@types/node@npm:20.11.3"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 029d603b56f7277b109a14e29e97d8e7269960cedafd8761cd0e65a0bcd9e7a554c192708becf3248a22f42681f476320af6a06c64a692a52414d1c167d9f50a
+  checksum: dff64333435bbda87e200e24e2103f40692d0a01849db685ecb31db7c589f2556843a03dd351ddaee9981020263939c026557b36df49154efd910c610deefe78
   languageName: node
   linkType: hard
 
