@@ -23,7 +23,7 @@
     "dependencies": {
         "@actions/core": "1.10.1",
         "@actions/exec": "1.1.1",
-        "@noelware/utils": "2.4.0"
+        "@noelware/utils": "2.5.0"
     },
     "devDependencies": {
         "@augu/eslint-config": "5.0.0",
