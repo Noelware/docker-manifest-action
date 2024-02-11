@@ -426,7 +426,7 @@ __metadata:
     eslint-config-prettier: "npm:9.1.0"
     eslint-formatter-codeframe: "npm:7.32.1"
     eslint-plugin-perfectionist: "npm:2.5.0"
-    globby: "npm:14.0.0"
+    globby: "npm:14.0.1"
     prettier: "npm:3.2.5"
     rimraf: "npm:5.0.5"
     tsx: "npm:4.7.1"
@@ -576,10 +576,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/merge-streams@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@sindresorhus/merge-streams@npm:1.0.0"
-  checksum: 10/453c2a28164113a5ec4fd23ba636e291a4112f6ee9e91cd5476b9a96e0fc9ee5ff40d405fe81bbf284c9773b7ed718a3a0f31df7895a0efd413b1f9775d154fe
+"@sindresorhus/merge-streams@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@sindresorhus/merge-streams@npm:2.1.0"
+  checksum: 10/21716b1a544391bf90586efcf58261f97c2c788bed22a4fd9bd1be505a98657f996a87cf1f38a589de5947e501380fc4d6df887474dff778dc2ad5195491ef70
   languageName: node
   linkType: hard
 
@@ -1961,17 +1961,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:14.0.0":
-  version: 14.0.0
-  resolution: "globby@npm:14.0.0"
+"globby@npm:14.0.1":
+  version: 14.0.1
+  resolution: "globby@npm:14.0.1"
   dependencies:
-    "@sindresorhus/merge-streams": "npm:^1.0.0"
+    "@sindresorhus/merge-streams": "npm:^2.1.0"
     fast-glob: "npm:^3.3.2"
     ignore: "npm:^5.2.4"
     path-type: "npm:^5.0.0"
     slash: "npm:^5.1.0"
     unicorn-magic: "npm:^0.1.0"
-  checksum: 10/6e7d84bbc69d8d21a07507af090998c6546c385702a350ff14f6fb08207f90ed40bd41c7b19c11a23851c3b86666e79503373e0f8b400a91a29b13952b1e960c
+  checksum: 10/b36f57afc45a857a884d82657603c7e1663b1e6f3f9afbeb53d12e42230469fc5b26a7e14a01e51086f3f25c138f58a7002036fcc8f3ca054097b6dd7c71d639
   languageName: node
   linkType: hard
 
