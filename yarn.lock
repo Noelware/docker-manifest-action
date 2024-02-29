@@ -416,7 +416,7 @@ __metadata:
     "@augu/eslint-config": "npm:5.0.0"
     "@augu/tsconfig": "npm:1.2.0"
     "@noelware/utils": "npm:2.5.0"
-    "@types/eslint": "npm:8.56.4"
+    "@types/eslint": "npm:8.56.5"
     "@types/node": "npm:20.11.22"
     "@typescript-eslint/eslint-plugin": "npm:7.1.0"
     "@typescript-eslint/parser": "npm:7.1.0"
@@ -583,13 +583,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.56.4":
-  version: 8.56.4
-  resolution: "@types/eslint@npm:8.56.4"
+"@types/eslint@npm:8.56.5":
+  version: 8.56.5
+  resolution: "@types/eslint@npm:8.56.5"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 10/bb8018f0c27839dd0b8c515ac4e6fac39500c36ba20007a6ecca2fe5e5f81cbecca2be8f6f649bdafd5556b8c6d5285d8506ae61cc8570f71fd4e6b07042f641
+  checksum: 10/548aab6ea34ca14452bf6e9212c76bb22cdf3b725d47e25591c20651af3f47fb62c59c4e80ed8ea3f7d1d7374d907cbba980af910e4c0f0cb29f73b9a6a9226f
   languageName: node
   linkType: hard
 
