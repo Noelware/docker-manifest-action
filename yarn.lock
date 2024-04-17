@@ -415,7 +415,7 @@ __metadata:
     "@actions/exec": "npm:1.1.1"
     "@augu/eslint-config": "npm:5.0.0"
     "@augu/tsconfig": "npm:1.2.0"
-    "@noelware/utils": "npm:2.5.0"
+    "@noelware/utils": "npm:2.5.1"
     "@types/eslint": "npm:8.56.9"
     "@types/node": "npm:20.12.7"
     "@typescript-eslint/eslint-plugin": "npm:7.7.0"
@@ -442,10 +442,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noelware/utils@npm:2.5.0":
-  version: 2.5.0
-  resolution: "@noelware/utils@npm:2.5.0"
-  checksum: 10/e13ded4fd40634120c3f6a2852fe85675bb64b03dc491046b1caa373a8da39d719b90a2171a6b1c444ce8320a0ae20c408099dfd7f7f52825bf3d2359aa6af10
+"@noelware/utils@npm:2.5.1":
+  version: 2.5.1
+  resolution: "@noelware/utils@npm:2.5.1"
+  checksum: 10/05270d84a215010daf01f8b67582d177605c92d957d3a278bd7718a594c609203a70ab1b91ef1d190af6d2659901d03336cb032b8f8736e03b73c8c70d70d577
   languageName: node
   linkType: hard
 
