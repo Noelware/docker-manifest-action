@@ -22,35 +22,7 @@
  */
 
 import { fileURLToPath } from 'url';
-
-// Node (`ESLINT_FLAT_CONFIG=1 npx eslint`):
-//      > import('@augu/eslint-config'):
-//      [Module: null prototype] {
-//        default: {
-//          default: [Getter],
-//          javascript: [Getter],
-//          perfectionist: [Getter],
-//          typescript: [Getter],
-//          vue: [Getter]
-//        },
-//        javascript: [Function: javascript],
-//        perfectionist: [AsyncFunction: perfectionist],
-//        typescript: [AsyncFunction: typescript],
-//        vue: [AsyncFunction: vue]
-//      }
-//
-// Bun:
-//     > bun run lint
-//     Module {
-//       default: [Function: noel],
-//       javascript: [Function: javascript],
-//       perfectionist: [Function: perfectionist],
-//       typescript: [Function: typescript],
-//       vue: [Function: vue],
-//     }
-const noel = await import('@augu/eslint-config').then((mod) =>
-    typeof Bun !== 'undefined' ? mod.default : mod.default.default
-);
+import noel from '@augu/eslint-config';
 
 export default noel({
     typescript: {
