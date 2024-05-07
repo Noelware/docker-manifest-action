@@ -1,8 +1,8 @@
 {
     "name": "@noelware/docker-manifest-action",
     "description": "🐻‍❄️🐳 Simple and tiny GitHub action to link Docker manifests easily!~",
-    "version": "0.4.0",
-    "main": "build/action.js",
+    "version": "0.4.2",
+    "main": "build/index.js",
     "type": "module",
     "license": "MIT",
     "author": "Noelware, LLC. <team@noelware.org>",
@@ -26,7 +26,7 @@
         "@noelware/utils": "2.5.1"
     },
     "devDependencies": {
-        "@augu/eslint-config": "5.0.0",
+        "@augu/eslint-config": "5.2.4",
         "@augu/tsconfig": "1.2.0",
         "@types/eslint": "8.56.10",
         "@types/node": "20.12.10",
