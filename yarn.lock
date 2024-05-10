@@ -597,7 +597,7 @@ __metadata:
     globby: "npm:14.0.1"
     prettier: "npm:3.2.5"
     rimraf: "npm:5.0.5"
-    tsx: "npm:4.9.3"
+    tsx: "npm:4.9.4"
     typescript: "npm:5.4.5"
     vitest: "npm:1.6.0"
   languageName: unknown
@@ -3251,9 +3251,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.9.3":
-  version: 4.9.3
-  resolution: "tsx@npm:4.9.3"
+"tsx@npm:4.9.4":
+  version: 4.9.4
+  resolution: "tsx@npm:4.9.4"
   dependencies:
     esbuild: "npm:~0.20.2"
     fsevents: "npm:~2.3.3"
@@ -3263,7 +3263,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/17ed7b748d9f213e0b3795f99ef14edf26f814eb498d4a7be95a253648f39f376009e97d4202fdb3f8a03f3b0e1b3fe6e64b70be83d58beadf1a6158612a163b
+  checksum: 10/7dce8d861fa0a22693757da5aea3f1dffdf7736c7119e3f1a691e71221722ab881b223a5e5a3476bcefd537887941528efd829a8895f272782eda317a3d32956
   languageName: node
   linkType: hard
 
