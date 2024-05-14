@@ -29,7 +29,7 @@
         "@augu/eslint-config": "5.2.4",
         "@augu/tsconfig": "1.2.0",
         "@types/eslint": "8.56.10",
-        "@types/node": "20.12.11",
+        "@types/node": "20.12.12",
         "@typescript-eslint/eslint-plugin": "7.8.0",
         "@typescript-eslint/parser": "7.8.0",
         "@vercel/ncc": "0.38.1",
