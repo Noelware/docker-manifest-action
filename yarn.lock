@@ -597,7 +597,7 @@ __metadata:
     globby: "npm:14.0.1"
     prettier: "npm:3.2.5"
     rimraf: "npm:5.0.7"
-    tsx: "npm:4.10.2"
+    tsx: "npm:4.10.3"
     typescript: "npm:5.4.5"
     vitest: "npm:1.6.0"
   languageName: unknown
@@ -1975,12 +1975,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-tsconfig@npm:^4.7.3":
-  version: 4.7.3
-  resolution: "get-tsconfig@npm:4.7.3"
+"get-tsconfig@npm:^4.7.5":
+  version: 4.7.5
+  resolution: "get-tsconfig@npm:4.7.5"
   dependencies:
     resolve-pkg-maps: "npm:^1.0.0"
-  checksum: 10/7397bb4f8aef936df4d9016555b662dcf5279f3c46428b7c7c1ff5e94ab2b87d018b3dda0f4bc1a28b154d5affd0eac5d014511172c085fd8a9cdff9ea7fe043
+  checksum: 10/de7de5e4978354e8e6d9985baf40ea32f908a13560f793bc989930c229cc8d5c3f7b6b2896d8e43eb1a9b4e9e30018ef4b506752fd2a4b4d0dfee4af6841b119
   languageName: node
   linkType: hard
 
@@ -3246,19 +3246,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.10.2":
-  version: 4.10.2
-  resolution: "tsx@npm:4.10.2"
+"tsx@npm:4.10.3":
+  version: 4.10.3
+  resolution: "tsx@npm:4.10.3"
   dependencies:
     esbuild: "npm:~0.20.2"
     fsevents: "npm:~2.3.3"
-    get-tsconfig: "npm:^4.7.3"
+    get-tsconfig: "npm:^4.7.5"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/3e399a3fcfa97cabb003af2465ad274175e2f6931559981c1a627a10ed608c1068146f4863ddd0b648ef7a092f17cfe426b53c781bc2ca1cb85bed5288147489
+  checksum: 10/37101b7181dd2f4b3576ba172aa435e58e895f2cb3a4157f7b4b44c27fb8114c6f7e3dafdcb01139a440aa841e908fecb108c15e83735cb22db87b63257768ec
   languageName: node
   linkType: hard
 
