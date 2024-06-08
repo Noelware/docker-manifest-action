@@ -41,7 +41,7 @@
         "globby": "14.0.1",
         "prettier": "3.3.1",
         "rimraf": "5.0.7",
-        "tsx": "4.13.2",
+        "tsx": "4.13.3",
         "typescript": "5.4.5",
         "vitest": "1.6.0"
     }
