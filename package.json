@@ -38,7 +38,7 @@
         "eslint-config-prettier": "9.1.0",
         "eslint-formatter-codeframe": "7.32.1",
         "eslint-plugin-perfectionist": "2.11.0",
-        "globby": "14.0.1",
+        "globby": "14.0.2",
         "prettier": "3.3.2",
         "rimraf": "5.0.7",
         "tsx": "4.16.0",
