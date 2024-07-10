@@ -632,7 +632,7 @@ __metadata:
     eslint-plugin-perfectionist: "npm:2.11.0"
     globby: "npm:14.0.2"
     prettier: "npm:3.3.2"
-    rimraf: "npm:6.0.0"
+    rimraf: "npm:6.0.1"
     tsx: "npm:4.16.2"
     typescript: "npm:5.5.3"
     vitest: "npm:2.0.2"
@@ -2985,14 +2985,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:6.0.0":
-  version: 6.0.0
-  resolution: "rimraf@npm:6.0.0"
+"rimraf@npm:6.0.1":
+  version: 6.0.1
+  resolution: "rimraf@npm:6.0.1"
   dependencies:
     glob: "npm:^11.0.0"
+    package-json-from-dist: "npm:^1.0.0"
   bin:
     rimraf: dist/esm/bin.mjs
-  checksum: 10/8a2e161f89b4fb8d7f3cab9bdea5360e9ab2ddc13d8120508b56eb93ba0c6f4506b799598900db6558628194b09f89705d1b98a591d7f727508e427e247befea
+  checksum: 10/0eb7edf08aa39017496c99ba675552dda11a20811ba78f8232da2ba945308c91e9cd673f95998b1a8202bc7436d33390831d23ea38ae52751038d56373ad99e2
   languageName: node
   linkType: hard
 
