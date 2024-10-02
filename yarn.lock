@@ -22,7 +22,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/exec@npm:1.1.1":
+"@actions/core@npm:1.11.0":
+  version: 1.11.0
+  resolution: "@actions/core@npm:1.11.0"
+  dependencies:
+    "@actions/exec": "npm:^1.1.1"
+    "@actions/http-client": "npm:^2.0.1"
+  checksum: 10/64a215df0615e94be8678c7c60aa60abe3dcd0aab7fc9af4092327542bec5ccde57670947aa1020bdd5ad7ab1668902ed3429add4b1082ba5cda098b42e81c47
+  languageName: node
+  linkType: hard
+
+"@actions/exec@npm:1.1.1, @actions/exec@npm:^1.1.1":
   version: 1.1.1
   resolution: "@actions/exec@npm:1.1.1"
   dependencies:
@@ -600,7 +610,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@noelware/docker-manifest-action@workspace:."
   dependencies:
-    "@actions/core": "npm:1.10.1"
+    "@actions/core": "npm:1.11.0"
     "@actions/exec": "npm:1.1.1"
     "@augu/eslint-config": "npm:5.2.4"
     "@augu/tsconfig": "npm:1.2.0"
