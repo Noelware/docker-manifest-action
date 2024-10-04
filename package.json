@@ -21,7 +21,7 @@
         "fmt": "tsx --tsconfig ./scripts/tsconfig.json scripts/prettier.ts"
     },
     "dependencies": {
-        "@actions/core": "1.11.0",
+        "@actions/core": "1.11.1",
         "@actions/exec": "1.1.1",
         "@noelware/utils": "2.5.1"
     },
