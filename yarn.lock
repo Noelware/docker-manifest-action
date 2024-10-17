@@ -648,7 +648,7 @@ __metadata:
     eslint: "npm:9.12.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-formatter-codeframe: "npm:7.32.1"
-    eslint-plugin-perfectionist: "npm:3.9.0"
+    eslint-plugin-perfectionist: "npm:3.9.1"
     globby: "npm:14.0.2"
     prettier: "npm:3.3.3"
     rimraf: "npm:6.0.1"
@@ -1705,9 +1705,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-perfectionist@npm:3.9.0":
-  version: 3.9.0
-  resolution: "eslint-plugin-perfectionist@npm:3.9.0"
+"eslint-plugin-perfectionist@npm:3.9.1":
+  version: 3.9.1
+  resolution: "eslint-plugin-perfectionist@npm:3.9.1"
   dependencies:
     "@typescript-eslint/types": "npm:^8.9.0"
     "@typescript-eslint/utils": "npm:^8.9.0"
@@ -1728,7 +1728,7 @@ __metadata:
       optional: true
     vue-eslint-parser:
       optional: true
-  checksum: 10/472b4d5d00a36cc5b042f195fddbad459ffee95a66805788dd5c1d34df14eae347cd2ef1643326a5cc374bbb22f15491c8c30ce42c525ebbc908f83ee048b7c6
+  checksum: 10/a40ea811fee63607dee62bd50e8fa02cdf583b90d5a3e06e8b7cf786a6c01a3c1a6bf67919e633f914ffd56a5bcd3ceb30c4a4d671a15399d1a00870c9acaf84
   languageName: node
   linkType: hard
 
