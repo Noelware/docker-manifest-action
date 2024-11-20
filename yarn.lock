@@ -638,7 +638,7 @@ __metadata:
     eslint: "npm:9.15.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-formatter-codeframe: "npm:7.32.1"
-    eslint-plugin-perfectionist: "npm:4.0.2"
+    eslint-plugin-perfectionist: "npm:4.0.3"
     globby: "npm:14.0.2"
     prettier: "npm:3.3.3"
     rimraf: "npm:6.0.1"
@@ -1639,16 +1639,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-perfectionist@npm:4.0.2":
-  version: 4.0.2
-  resolution: "eslint-plugin-perfectionist@npm:4.0.2"
+"eslint-plugin-perfectionist@npm:4.0.3":
+  version: 4.0.3
+  resolution: "eslint-plugin-perfectionist@npm:4.0.3"
   dependencies:
     "@typescript-eslint/types": "npm:^8.15.0"
     "@typescript-eslint/utils": "npm:^8.15.0"
     natural-orderby: "npm:^5.0.0"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 10/f7320890c3f469ac272a24672ffbc79c78eb934ccbf5475bad15cbe64794d60dde7ee6e6918a6addff071a2106cf77d3bbe5a822847c307bf505afdf37c06ec4
+  checksum: 10/c61aa7f4d7f9f168bac694eaf0b4f4e08375a2555949efd5eda4ed441f3eae41de8a15bd75a44b7c2edf1a8a4faabbdf56b47530282a27ecd8c5cf10f6109004
   languageName: node
   linkType: hard
 
