@@ -34,7 +34,7 @@
         "@typescript-eslint/parser": "8.24.0",
         "@vercel/ncc": "0.38.3",
         "colorette": "2.0.20",
-        "eslint": "9.20.0",
+        "eslint": "9.20.1",
         "eslint-config-prettier": "10.0.1",
         "eslint-formatter-codeframe": "7.32.1",
         "eslint-plugin-perfectionist": "4.8.0",
