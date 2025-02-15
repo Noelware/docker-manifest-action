@@ -662,7 +662,7 @@ __metadata:
     eslint-formatter-codeframe: "npm:7.32.1"
     eslint-plugin-perfectionist: "npm:4.9.0"
     globby: "npm:14.1.0"
-    prettier: "npm:3.3.3"
+    prettier: "npm:3.5.1"
     rimraf: "npm:6.0.1"
     tsx: "npm:4.19.2"
     typescript: "npm:5.7.3"
@@ -2709,12 +2709,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.3.3":
-  version: 3.3.3
-  resolution: "prettier@npm:3.3.3"
+"prettier@npm:3.5.1":
+  version: 3.5.1
+  resolution: "prettier@npm:3.5.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/5beac1f30b5b40162532b8e2f7c3a4eb650910a2695e9c8512a62ffdc09dae93190c29db9107fa7f26d1b6c71aad3628ecb9b5de1ecb0911191099be109434d7
+  checksum: 10/09ab168e651e50c2c79804d65f17a68129ce1c573830b2fb08c988b585add8076b8d995789034d66a14338d6b8835e8c591e0fc1bc90f4344af9645738636d01
   languageName: node
   linkType: hard
 
