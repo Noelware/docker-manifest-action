@@ -46,11 +46,13 @@ inputs:
         description: '[deprecated] Use the `inputs` input instead'
         required: false
         default: ''
+        deprecationMessage: '`base-image` is deprecated, please use the `inputs` input instead.'
 
     extra-images:
         description: '[deprecated] Use the `output` input instead'
         required: false
         default: ''
+        deprecationMessage: '`extra-images` is deprecated, please use the `output` input instead.'
 
     push:
         description: If the action should push the outputs to the Docker registry listed as.
