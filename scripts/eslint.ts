@@ -67,9 +67,6 @@ export async function main() {
             for (const result of results) {
                 for (const msg of result.messages) {
                     switch (msg.severity) {
-                        case 0:
-                            continue;
-
                         case 1:
                             log.warn(
                                 `[${msg.ruleId || '(unknown rule)'}] ${msg.message} (line ${msg.line}:${msg.column})`

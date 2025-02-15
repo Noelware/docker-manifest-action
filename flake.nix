@@ -1,5 +1,5 @@
 # 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
-# Copyright (c) 2022-2024 Noelware, LLC. <team@noelware.org>
+# Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +21,15 @@
 {
   description = "🐳 Simple and tiny GitHub action to link Docker manifests easily";
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-    flake-utils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     flake-compat = {
-      url = github:edolstra/flake-compat;
+      url = "github:edolstra/flake-compat";
       flake = false;
     };
   };
 
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
     ...
