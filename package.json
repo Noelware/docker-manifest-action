@@ -8,7 +8,7 @@
     "author": "Noelware, LLC. <team@noelware.org>",
     "repository": "https://github.com/Noelware/docker-manifest-action",
     "bugs": "https://github.com/Noelware/docker-manifest-action",
-    "packageManager": "yarn@4.6.0",
+    "packageManager": "yarn@4.7.0",
     "keywords": [
         "docker",
         "docker-manifest-action",
