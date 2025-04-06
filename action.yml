@@ -37,8 +37,8 @@ inputs:
 
             Optionally, it can be comma-separated to create multiple final images from the
             given `images`.
-    images:
-        description: A comma-separated list of images that will be applied into the merged manifest from `inputs`.
+    tags:
+        description: A comma-separated list of tags that will be applied into the merged manifest from `inputs`.
         required: true
     push:
         description: Whether if the action should push the outputs to the Docker registry.

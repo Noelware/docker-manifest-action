@@ -21,8 +21,73 @@
  * SOFTWARE.
  */
 
+import { endGroup, error, startGroup, warning } from '@actions/core';
+import { all, get } from './inputs.js';
+import { Docker } from '@docker/actions-toolkit/lib/docker/docker.js';
+import { Buildx } from '@docker/actions-toolkit/lib/buildx/buildx.js';
+import { exit } from 'node:process';
+import { exec } from '@actions/exec';
+
 async function main() {
-    // TODO(@auguwu): this function
+    // Prepare the cache for inputs
+    all();
+
+    // Check if `docker buildx` is avaliable
+    const buildx = new Buildx();
+    if (!(await buildx.isAvailable())) {
+        error(`\`docker buildx\` is not avaliable!`);
+        warning('Did you forget to use `docker/setup-buildx-action`?');
+
+        exit(1);
+    }
+
+    {
+        const _ = startGroup('Docker Information');
+
+        await Docker.printVersion();
+        await Docker.printInfo();
+
+        endGroup();
+    }
+
+    const inputs = get('inputs') || [];
+    if (inputs.length === 0) {
+        error('Missing a list of input images to merge.');
+        exit(1);
+    }
+
+    const tags = get('tags') || [];
+    const push = get('push') || false;
+    const append = get('append') || false;
+    const annotations = get('annotations') || [];
+    const builder = get('builder');
+
+    const createArgs = [
+        ...(builder ? [`--builder=${builder}`] : []),
+        'imagetools',
+        'create',
+        ...inputs,
+        ...annotations.map((annotation) => `--annotation=${annotation}`),
+        ...tags.map((tag) => `--tag=${tag}`)
+    ];
+
+    if (push) {
+        createArgs.push('--push');
+    }
+
+    if (append) {
+        createArgs.push('--append');
+    }
+
+    const { command, args } = await buildx.getCommand(createArgs);
+    startGroup(`$ ${command} ${args.join(' ')}`);
+
+    const exitCode = await exec(command, args);
+    if (exitCode !== 0) {
+        warning(`Exited with code ${exitCode}.`);
+    }
+
+    endGroup();
 }
 
 main();
