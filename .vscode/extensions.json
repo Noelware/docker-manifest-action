@@ -1,9 +1,0 @@
-{
-    "recommendations": [
-        "me-dutour-mathieu.vscode-github-actions",
-        "ms-azuretools.vscode-docker",
-        "yoavbls.pretty-ts-errors",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-    ]
-}
