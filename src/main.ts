@@ -22,12 +22,12 @@
  */
 
 import { endGroup, error, startGroup, warning } from '@actions/core';
+import runImageTools from './tools/imagetools.js';
 import { all, get } from './inputs.js';
 import runFallback from './tools/manifest.js';
 import { Docker } from '@docker/actions-toolkit/lib/docker/docker.js';
 import { Buildx } from '@docker/actions-toolkit/lib/buildx/buildx.js';
 import { exit } from 'node:process';
-import runImageTools from './tools/imagetools.js';
 
 async function main() {
     // Prepare the cache for inputs
@@ -64,7 +64,14 @@ async function main() {
         return runFallback({ inputs, tags, push, append });
     }
 
-    return runImageTools(buildx, { inputs, tags, push, append, annotations, builder });
+    return runImageTools(buildx, {
+        inputs,
+        tags,
+        push,
+        append,
+        annotations,
+        builder
+    });
 }
 
 main();
