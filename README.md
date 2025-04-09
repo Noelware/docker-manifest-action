@@ -23,11 +23,44 @@ jobs:
                   push: true
 ```
 
+## Migrating from `v0.4.x`
+
+- `images` was changed to `tags` to better reflect `buildx imagetools create`
+- `base-image` was removed, use `inputs` instead
+- `extra-images` was removed, use `tags` instead
+- `amend` was renamed to `append` to better reflect `buildx imagetools create`
+
 ## Inputs
 
-<!-- GENERATE INPUT DOCUMENTATION: START -->
+### `inputs` (array of strings)
 
-<!-- GENERATE INPUT DOCUMENTATION: END -->
+A list of Docker images thdocker buildx imagetoolsat were built from `docker build` into the merged manifests.
+
+Optionally, it can be a comma-separated list (i.e, `image/a:latest-amd64,image/b:latest-amd64`) to create multiple final images from the given [`tags`](#tags-array-of-strings).
+
+### `tags` (array of strings)
+
+A comma-separated list of tags that will be applied into the merged manifest from [`inputs`](#inputs-array-of-strings).
+
+### `push` (`boolean`)
+
+Whether if the action should push the outputs to the Docker registry.
+
+### `annotations` (mapping of `label=value`)
+
+A mapping of annotations to annotate the final, merged manifest.
+
+This is the same syntax as the official Docker GitHub actions handles mappings of `label=value`.
+
+View the [`docker buildx imagetools create --annotation`](https://docs.docker.com/reference/cli/docker/buildx/imagetools/create/#annotation) documentation on how to format each annotation.
+
+### `append` (boolean)
+
+Sets the `--append` flag, which will add new sources to existing manifests.
+
+### `builder` (string)
+
+Sets the `--builder` for the `buildx` command.
 
 ## Contributing
 
@@ -50,3 +83,5 @@ If you read both if you're a new time contributor, now you can do the following:
 ## License
 
 **docker-manifest-action** is released under the **MIT License** with love and care by [Noelware, LLC.](https://noelware.org).
+
+[`docker buildx imagetools`]: https://docs.docker.com/reference/cli/docker/buildx/imagetools/create
