@@ -1,6 +1,6 @@
 /*
- * 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
- * Copyright (c) 2022-2024 Noelware, LLC. <team@noelware.org>
+ * 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
+ * Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,11 +21,17 @@
  * SOFTWARE.
  */
 
-import { fileURLToPath } from 'url';
 import noel from '@augu/eslint-config';
+import { fileURLToPath } from 'node:url';
 
-export default noel({
-    typescript: {
-        tsconfig: fileURLToPath(new URL('.', import.meta.url))
+export default noel(
+    {
+        stylistic: true,
+        typescript: {
+            tsconfig: fileURLToPath(new URL('./tsconfig.json', import.meta.url))
+        }
+    },
+    {
+        ignores: ['build/**']
     }
-});
+);

@@ -1,48 +1,44 @@
 {
     "name": "@noelware/docker-manifest-action",
-    "description": "🐻‍❄️🐳 Simple and tiny GitHub action to link Docker manifests easily!~",
-    "version": "0.4.3",
-    "main": "build/index.js",
+    "description": "🐻‍❄️🐳 A tiny, simple GitHub Action to link Docker manifests easily",
+    "version": "1.0.0",
+    "main": "build/main.js",
     "type": "module",
+    "private": true,
+    "author": "Noel Towa <cutie@floofy.dev>",
     "license": "MIT",
-    "author": "Noelware, LLC. <team@noelware.org>",
     "repository": "https://github.com/Noelware/docker-manifest-action",
-    "bugs": "https://github.com/Noelware/docker-manifest-action",
-    "packageManager": "yarn@4.9.0",
+    "bugs": "https://github.com/Noelware/docker-manifest-action/issues/new",
     "keywords": [
         "docker",
         "docker-manifest-action",
         "manifest"
     ],
     "scripts": {
-        "build": "yarn fmt && yarn lint && rimraf build && ncc build src/index.ts -o build -m -C --license LICENSE",
-        "lint": "tsx --tsconfig ./scripts/tsconfig.json scripts/eslint.ts",
-        "test": "yarn fmt && yarn lint && vitest run",
-        "fmt": "tsx --tsconfig ./scripts/tsconfig.json scripts/prettier.ts"
+        "check": "prettier --check **/*.{js,ts,json,yml,yaml,md}",
+        "build": "bun lint && bun check && bun build src/main.ts --outfile=build/index.js --minify --target=node",
+        "lint": "eslint --format codeframe --exit-on-fatal-error --stats",
+        "fmt": "prettier --write **/*.{js,ts,json,yml,yaml,md}"
     },
     "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/exec": "1.1.1",
+        "@docker/actions-toolkit": "0.58.0",
         "@noelware/utils": "2.5.1"
     },
     "devDependencies": {
         "@augu/eslint-config": "5.3.1",
         "@augu/tsconfig": "1.2.0",
-        "@types/eslint": "9.6.1",
+        "@stylistic/eslint-plugin": "4.2.0",
+        "@types/bun": "1.2.8",
+        "@types/js-yaml": "4.0.9",
         "@types/node": "22.14.0",
-        "@typescript-eslint/eslint-plugin": "8.29.1",
-        "@typescript-eslint/parser": "8.29.1",
-        "@vercel/ncc": "0.38.3",
-        "colorette": "2.0.20",
-        "eslint": "9.24.0",
         "eslint-config-prettier": "10.1.1",
         "eslint-formatter-codeframe": "7.32.1",
-        "eslint-plugin-perfectionist": "4.11.0",
-        "globby": "14.1.0",
-        "prettier": "3.3.3",
-        "rimraf": "6.0.1",
-        "tsx": "4.19.3",
+        "js-yaml": "4.1.0",
+        "prettier": "3.5.3",
         "typescript": "5.8.3",
-        "vitest": "3.1.1"
+        "typescript-eslint": "8.29.0",
+        "zod": "3.24.2"
     }
 }

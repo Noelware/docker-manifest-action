@@ -1,4 +1,4 @@
-# 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+# 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
 # Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,9 +20,9 @@
 # SOFTWARE.
 let
   lockfile = builtins.fromJSON (builtins.readFile ./flake.lock);
+  rev = lockfile.nodes.flake-compat.locked;
   compat = builtins.fetchTarball {
-    url = "https://github.com/edolstra/flake-compat/archive/${lockfile.nodes.flake-compat.locked.rev}.tar.gz";
-    sha256 = "${lockfile.nodes.flake-compat.locked.narHash}";
+    url = "https://github.com/${rev.owner}/${rev.repo}/archive/${rev.rev}.tar.gz";
+    sha256 = rev.narHash;
   };
-in
-  (import compat {src = ./.;}).shellNix.default
+in (import compat { src = ../.; }).shellNix.default

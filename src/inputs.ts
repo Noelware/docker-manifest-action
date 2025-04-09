@@ -1,5 +1,5 @@
 /*
- * 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+ * 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
  * Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,115 +21,86 @@
  * SOFTWARE.
  */
 
-import { getBooleanInput, getInput, warning } from '@actions/core';
-import { debug } from 'console';
+import { getInput, type InputOptions } from '@actions/core';
+import { Util } from '@docker/actions-toolkit/lib/util.js';
 
-/**
- * Represents the action's inputs
- */
-export interface Input {
+const truthy = new Set(['true', 'True', 'TRUE']);
+const falsy = new Set(['false', 'False', 'FALSE']);
+
+const getBooleanInput = (name: string, def: boolean, options: InputOptions) => {
+    const value = getInput(name, options);
+    if (!value) return def;
+    if (truthy.has(value)) return true;
+    if (falsy.has(value)) return false;
+
+    throw new Error(
+        `Value of key [${name}] didn't meet the Yaml 1.2 "Core Schema" specification (received: [${value}])`
+    );
+};
+
+function getArrayInput(input: string, opts: { sep: string; required?: boolean }) {
+    return getInput(input, { trimWhitespace: true, required: opts.required })
+        .split(opts.sep)
+        .filter(Boolean)
+        .map((s) => s.trim());
+}
+
+export interface Inputs {
     /**
-     * A list of input Docker images (that were previously built) as the inputs for the merged manifests.
-     * Optionally, comma-seperate to create multiple final images with the same manifest.
+     * A mapping of annotations to annotate the final, merged manifest.
+     *
+     * View the [`docker buildx imagetools create --annotation`](https://docs.docker.com/reference/cli/docker/buildx/imagetools/create/#annotation)
+     * documentation on how to format each annotation.
+     */
+    annotations: string[];
+
+    /** Sets the `--builder` for the `buildx` command. */
+    builder?: string;
+
+    /**
+     * A list of Docker images that were built from `docker build` to be the inputs
+     * into the merged manifests.
+     *
+     * Optionally, it can be comma-separated to create multiple final images from the
+     * given `images`.
      */
     inputs: string[];
 
-    /**
-     * Comma-seperated list of images that will be applied from the {@link Input.inputs inputs}.
-     */
-    images: string[];
+    /** A comma-separated list of tags that will be applied into the merged manifest from `inputs`. */
+    tags: string[];
 
-    /**
-     * If the action should apply the **--amend** flag to `docker manifest create` (and `docker manifest push` if `push` is true).
-     * This is useful if the action has created a manifest but had errored when creating (or pushing) a merged manifest.
-     */
-    amend: boolean;
+    /** Sets the `--append` flag, which will add new sources to existing manifests. */
+    append: boolean;
 
-    /**
-     * If the action should push the outputs to the Docker registry listed as.
-     */
+    /** Whether if the action should push the outputs to the Docker registry.1` */
     push: boolean;
 }
 
-export const getInputs = (): Input | null => {
-    let inputs = getInput('inputs', { trimWhitespace: true })
-        .split(',')
-        .map((i) => i.trim());
+const ALL: Map<string, any> = null!;
 
-    let outputs = getInput('images', { trimWhitespace: true })
-        .split(',')
-        .map((i) => i.trim());
-
-    const push = getBooleanInput('push', { trimWhitespace: true });
-    const amend = getBooleanInput('amend', { trimWhitespace: true });
-    const baseImages = getInput('base-image', { trimWhitespace: true })
-        .split(',')
-        .map((i) => i.trim());
-
-    if (inputs.length === 0 && baseImages.length > 0) {
-        warning('Using the `base-image` input has been deprecated since v0.3, please use the `inputs` input instead.');
-        inputs = baseImages;
+/**
+ * Creates a mapping of all the inputs avaliable.
+ *
+ * On the first invocation, it will be loaded from the main script. On other invocations,
+ * it is cached.
+ */
+export function all(): Map<string, any> {
+    if (ALL !== null) {
+        return ALL;
     }
 
-    // Merge `base-images` into the inputs
-    if (inputs.length > 0 && baseImages.length > 0) {
-        inputs = inputs.concat(baseImages);
-    }
+    const map = new Map<keyof Inputs, any>();
+    map.set('inputs', getArrayInput('inputs', { sep: ',', required: true }));
+    map.set('tags', getArrayInput('tags', { sep: ',', required: true }));
+    map.set('annotations', Util.getInputList('annotations', { ignoreComma: true }));
+    map.set('builder', getInput('builder', { trimWhitespace: true }));
+    map.set('append', getBooleanInput('append', false, { trimWhitespace: true }));
+    map.set('push', getBooleanInput('push', false, { trimWhitespace: true }));
 
-    const extraImages = getInput('extra-images', { trimWhitespace: true })
-        .split(',')
-        .map((i) => i.trim());
+    return map;
+}
 
-    if (outputs.length === 0 && extraImages.length > 0) {
-        warning(
-            'Using the `extra-images` input has been deprecated since v0.3, please use the `outputs` input instead.'
-        );
-        outputs = extraImages;
-    }
-
-    // Merge `extra-images` into the outputs
-    if (outputs.length > 0 && extraImages.length > 0) {
-        outputs = outputs.concat(extraImages);
-    }
-
-    // Warn if we don't have any inputs
-    inputs = inputs.filter(Boolean);
-    if (inputs.length === 0) {
-        warning('You will need to set some inputs! Did you forget to use `,` as the seperator?');
-        debug(
-            [
-                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
-                `Outputs => ${outputs.join(', ') || 'None'}`,
-                `Amend   => ${amend ? 'Yes' : 'No'}`,
-                `Push    => ${push ? 'Yes' : 'No'}`,
-                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
-            ].join('\n')
-        );
-
-        return null;
-    }
-
-    // Warn if we don't have any outputs
-    outputs = outputs.filter(Boolean);
-    if (outputs.length === 0) {
-        warning('You will need to set some outputs! Did you forget to use `,` as the seperator?');
-        debug(
-            [
-                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+',
-                `Inputs => ${inputs.join(', ')}`,
-                `Amend  => ${amend ? 'Yes' : 'No'}`,
-                `Push   => ${push ? 'Yes' : 'No'}`,
-                '+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+'
-            ].join('\n')
-        );
-
-        return null;
-    }
-
-    return {
-        inputs,
-        images: outputs,
-        push,
-        amend
-    };
-};
+/** Returns a input. */
+export function get<K extends keyof Inputs>(key: K): Inputs[K] | undefined {
+    return all().get(key) as Inputs[K] | undefined;
+}

@@ -1,4 +1,4 @@
-# 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+# 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
 # Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +19,37 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-compressionLevel: mixed
-enableGlobalCache: false
-nodeLinker: node-modules
-yarnPath: .yarn/releases/yarn-4.9.0.cjs
+name: CI
+on:
+    workflow_dispatch: {}
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - '.github/**'
+            - '.vscode/**'
+            - '.prettierignore'
+            - 'bun.lock'
+            - '**.md'
+            - LICENSE
+            - renovate.json
+    pull_request:
+        types: [opened, synchronize]
+        paths-ignore:
+            - '.vscode/**'
+            - '.prettierignore'
+            - 'bun.lock'
+            - '**.md'
+            - LICENSE
+            - renovate.json
+jobs:
+    ci:
+        name: General
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+            - run: bun install --frozen
+            - run: bun lint
+            - run: bun check
+            # - run: bun test

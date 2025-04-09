@@ -1,4 +1,4 @@
-# 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+# 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
 # Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,7 +18,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-FROM ghcr.io/auguwu/coder-images/node
-
-RUN echo 'woof'
+{pkgs}:
+pkgs.mkShell {
+  name = "docker-manifest-action-dev";
+  buildInputs = with pkgs; [
+    bun
+  ];
+}

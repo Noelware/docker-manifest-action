@@ -1,4 +1,11 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "enabled": true,
     "automerge": true,
-    "extends": ["config:base"]
+    "extends": ["config:base", "default:timezone(America/Los_Angeles)", "docker:disableMajor"],
+    "assignees": ["auguwu"],
+    "addLabels": ["deps"],
+    "vulnerabilityAlerts": {
+        "labels": ["security"]
+    }
 }

@@ -1,0 +1,20 @@
+{
+    "remove_trailing_whitespace_on_save": true,
+    "ensure_final_newline_on_save": true,
+    "format_on_save": "on",
+    "formatter": "auto",
+    "tab_size": 4,
+    "languages": {
+        "YAML": {
+            "formatter": "prettier",
+            "tab_size": 2
+        },
+        "JSON": {
+            "formatter": "prettier"
+        },
+        "Nix": {
+            "formatter": "language_server",
+            "tab_size": 2
+        }
+    }
+}

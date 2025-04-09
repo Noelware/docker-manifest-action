@@ -1,4 +1,4 @@
-# 🐳 docker-manifest-action: Simple and tiny GitHub action to link Docker manifests easily.
+# 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
 # Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,32 +19,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 {
-  description = "🐳 Simple and tiny GitHub action to link Docker manifests easily";
+  description = "🐻‍❄️🐳 Tiny, simple GitHub Action to link Docker manifests easily";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    systems.url = "github:nix-systems/default";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
   };
 
-  outputs = {
-    nixpkgs,
-    flake-utils,
-    ...
-  }:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in {
-      devShells.default = pkgs.mkShell {
-        name = "docker-manifest-action";
-        buildInputs = with pkgs; [
-          nodePackages.yarn
-          nodejs_20
-        ];
-      };
+  outputs = { nixpkgs, systems, ... }: let
+    eachSystem = nixpkgs.lib.genAttrs (import systems);
+    nixpkgsFor = system: import nixpkgs { inherit system; };
+  in {
+    formatter = eachSystem(system: (nixpkgsFor system).alejandra);
+    devShells = eachSystem(system: let pkgs = nixpkgsFor system; in {
+      default = import ./nix/devshell.nix {inherit pkgs;};
     });
+  };
 }
