@@ -24,9 +24,14 @@
 import noel from '@augu/eslint-config';
 import { fileURLToPath } from 'node:url';
 
-export default noel({
-    stylistic: true,
-    typescript: {
-        tsconfig: fileURLToPath(new URL('./tsconfig.json', import.meta.url))
+export default noel(
+    {
+        stylistic: true,
+        typescript: {
+            tsconfig: fileURLToPath(new URL('./tsconfig.json', import.meta.url))
+        }
+    },
+    {
+        ignores: ['build/**']
     }
-});
+);
