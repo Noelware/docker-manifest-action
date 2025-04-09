@@ -15,7 +15,8 @@
         "manifest"
     ],
     "scripts": {
-        "build": "bun lint && bun fmt && bun build src/main.ts --outfile=build/index.js --minify --target=node",
+        "check": "prettier --check **/*.{js,ts,json,yml,yaml,md}",
+        "build": "bun lint && bun check && bun build src/main.ts --outfile=build/index.js --minify --target=node",
         "lint": "eslint --format codeframe --exit-on-fatal-error --stats",
         "fmt": "prettier --write **/*.{js,ts,json,yml,yaml,md}"
     },

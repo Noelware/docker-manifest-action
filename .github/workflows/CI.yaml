@@ -51,5 +51,5 @@ jobs:
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen
             - run: bun lint
-            - run: bunx prettier --check **/*.{js,ts,json,yml,yaml,md}
+            - run: bun check
             # - run: bun test

@@ -23,26 +23,18 @@
 
 import { endGroup, error, startGroup, warning } from '@actions/core';
 import { all, get } from './inputs.js';
+import runFallback from './tools/manifest.js';
 import { Docker } from '@docker/actions-toolkit/lib/docker/docker.js';
 import { Buildx } from '@docker/actions-toolkit/lib/buildx/buildx.js';
 import { exit } from 'node:process';
-import { exec } from '@actions/exec';
+import runImageTools from './tools/imagetools.js';
 
 async function main() {
     // Prepare the cache for inputs
     all();
 
-    // Check if `docker buildx` is avaliable
-    const buildx = new Buildx();
-    if (!(await buildx.isAvailable())) {
-        error(`\`docker buildx\` is not avaliable!`);
-        warning('Did you forget to use `docker/setup-buildx-action`?');
-
-        exit(1);
-    }
-
     {
-        const _ = startGroup('Docker Information');
+        startGroup('Docker Information');
 
         await Docker.printVersion();
         await Docker.printInfo();
@@ -62,32 +54,17 @@ async function main() {
     const annotations = get('annotations') || [];
     const builder = get('builder');
 
-    const createArgs = [
-        ...(builder ? [`--builder=${builder}`] : []),
-        'imagetools',
-        'create',
-        ...inputs,
-        ...annotations.map((annotation) => `--annotation=${annotation}`),
-        ...tags.map((tag) => `--tag=${tag}`)
-    ];
+    // Check if `docker buildx` is avaliable
+    const buildx = new Buildx();
+    if (!(await buildx.isAvailable())) {
+        error(`\`docker buildx\` is not avaliable!`);
+        warning('Did you forget to use `docker/setup-buildx-action`?');
+        warning('~> Using `docker manifest` as a fallback!');
 
-    if (push) {
-        createArgs.push('--push');
+        return runFallback({ inputs, tags, push, append });
     }
 
-    if (append) {
-        createArgs.push('--append');
-    }
-
-    const { command, args } = await buildx.getCommand(createArgs);
-    startGroup(`$ ${command} ${args.join(' ')}`);
-
-    const exitCode = await exec(command, args);
-    if (exitCode !== 0) {
-        warning(`Exited with code ${exitCode}.`);
-    }
-
-    endGroup();
+    return runImageTools(buildx, { inputs, tags, push, append, annotations, builder });
 }
 
 main();
