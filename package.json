@@ -1,7 +1,7 @@
 {
     "name": "@noelware/docker-manifest-action",
     "description": "🐻‍❄️🐳 A tiny, simple GitHub Action to link Docker manifests easily",
-    "version": "1.0.0-beta",
+    "version": "1.0.0-beta.1",
     "main": "build/main.js",
     "type": "module",
     "private": true,

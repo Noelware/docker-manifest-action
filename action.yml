@@ -27,7 +27,7 @@ branding:
     color: blue
 runs:
     using: node20
-    main: ./build/main.js
+    main: ./build/index.js
 inputs:
     inputs:
         required: true
