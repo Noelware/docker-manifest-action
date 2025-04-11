@@ -64,6 +64,10 @@ async function main() {
         return runFallback({ inputs, tags, push, append });
     }
 
+    if (get('fallback')) {
+        return runFallback({ inputs, tags, push, append });
+    }
+
     return runImageTools(buildx, {
         inputs,
         tags,

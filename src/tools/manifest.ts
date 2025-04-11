@@ -35,7 +35,12 @@ const createManifestArguments = (
         ? ['manifest', type, '--amend', base].concat(images)
         : ['manifest', type, base].concat(images);
 
-export default async function runFallback({ inputs, tags, push, append }: Omit<Inputs, 'annotations' | 'builder'>) {
+export default async function runFallback({
+    inputs,
+    tags,
+    push,
+    append
+}: Omit<Inputs, 'annotations' | 'builder' | 'fallback'>) {
     let images = [] as string[];
 
     for (const image of inputs) {

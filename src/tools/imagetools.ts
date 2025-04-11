@@ -26,16 +26,15 @@ import { Buildx } from '@docker/actions-toolkit/lib/buildx/buildx.js';
 import { Inputs } from '../inputs.js';
 import { exec } from '@actions/exec';
 
-const getArguments = (type: 'create' | 'inspect', inputs: Inputs) => {
+const getArguments = (type: 'create' | 'inspect', inputs: Omit<Inputs, 'fallback'>) => {
     const args = [] as string[];
 
-    if (inputs.builder !== undefined) args.push(`--builder=${inputs.builder}`);
+    if (inputs.builder) args.push(`--builder=${inputs.builder}`);
     args.push('imagetools', type);
     args.push(...inputs.inputs);
     args.push(...inputs.annotations.map((annotation) => `--annotation=${annotation}`));
     args.push(...inputs.tags.map((tag) => `--tag=${tag}`));
 
-    if (inputs.push) args.push('--push');
     if (inputs.append) args.push('--append');
 
     return args;
@@ -43,7 +42,7 @@ const getArguments = (type: 'create' | 'inspect', inputs: Inputs) => {
 
 export default async function runImageTools(
     buildx: Buildx,
-    { inputs, tags, push, append, annotations, builder }: Inputs
+    { inputs, tags, push, append, annotations, builder }: Omit<Inputs, 'fallback'>
 ) {
     // TODO(@auguwu): determine how we should get images?
     const images = [] as string[];

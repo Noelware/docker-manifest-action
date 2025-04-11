@@ -41,7 +41,11 @@ inputs:
         description: A comma-separated list of tags that will be applied into the merged manifest from `inputs`.
         required: true
     push:
-        description: Whether if the action should push the outputs to the Docker registry.
+        description: Whether if the action should push the outputs to the Docker registry. Ignored if using `buildx imagetools`
+        required: false
+        default: 'false'
+    fallback:
+        description: Whether if this action should fallback to `manifest create`.
         required: false
         default: 'false'
     annotations:

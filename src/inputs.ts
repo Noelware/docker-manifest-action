@@ -57,6 +57,9 @@ export interface Inputs {
     /** Sets the `--builder` for the `buildx` command. */
     builder?: string;
 
+    /** Whether if the action should fallback to the `manifest create` command. */
+    fallback: boolean;
+
     /**
      * A list of Docker images that were built from `docker build` to be the inputs
      * into the merged manifests.
@@ -72,7 +75,7 @@ export interface Inputs {
     /** Sets the `--append` flag, which will add new sources to existing manifests. */
     append: boolean;
 
-    /** Whether if the action should push the outputs to the Docker registry.1` */
+    /** Whether if the action should push the outputs to the Docker registry. */
     push: boolean;
 }
 
@@ -96,6 +99,7 @@ export function all(): Map<string, any> {
     map.set('builder', getInput('builder', { trimWhitespace: true }));
     map.set('append', getBooleanInput('append', false, { trimWhitespace: true }));
     map.set('push', getBooleanInput('push', false, { trimWhitespace: true }));
+    map.set('fallback', getBooleanInput('fallback', false, { trimWhitespace: true }));
 
     return map;
 }
