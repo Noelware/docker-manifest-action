@@ -53,3 +53,21 @@ jobs:
             - run: bun lint
             - run: bun check
             # - run: bun test
+    update-build:
+        name: Update `build/` artifacts
+        runs-on: ubuntu-latest
+        needs: [ci] # Ensure that `ci` completes successfully.
+        if: ${{github.repository == 'Noelware/docker-manifest-action'}}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+            - run: bun install --frozen
+            - run: bun run build
+            - uses: EndBug/add-and-commit@v9
+              with:
+                  add: 'build'
+                  author_name: 'Noel[bot]'
+                  author_email: noelbot@users.noreply.github.com
+                  default_author: user_info
+                  message: '[skip ci] :sparkles: Update build artifacts'
+                  push: true
