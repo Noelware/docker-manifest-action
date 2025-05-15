@@ -64,7 +64,6 @@ inputs:
         required: false
         default: ''
         description: Sets the `--builder` for the `buildx` command.
-
 outputs:
     images:
         description: A comma-separated list of images that were pushed.
