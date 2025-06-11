@@ -22,7 +22,7 @@
         "prettier": "3.5.3",
         "typescript": "5.8.3",
         "typescript-eslint": "8.34.0",
-        "zod": "3.25.57",
+        "zod": "3.25.61",
       },
     },
   },
@@ -647,7 +647,7 @@
 
     "zip-stream": ["zip-stream@6.0.1", "", { "dependencies": { "archiver-utils": "^5.0.0", "compress-commons": "^6.0.2", "readable-stream": "^4.0.0" } }, "sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA=="],
 
-    "zod": ["zod@3.25.57", "", {}, "sha512-6tgzLuwVST5oLUxXTmBqoinKMd3JeesgbgseXeFasKKj8Q1FCZrHnbqJOyiEvr4cVAlbug+CgIsmJ8cl/pU5FA=="],
+    "zod": ["zod@3.25.61", "", {}, "sha512-fzfJgUw78LTNnHujj9re1Ov/JJQkRZZGDMcYqSx7Hp4rPOkKywaFHq0S6GoHeXs0wGNE/sIOutkXgnwzrVOGCQ=="],
 
     "@actions/artifact/@actions/github": ["@actions/github@5.1.1", "", { "dependencies": { "@actions/http-client": "^2.0.1", "@octokit/core": "^3.6.0", "@octokit/plugin-paginate-rest": "^2.17.0", "@octokit/plugin-rest-endpoint-methods": "^5.13.0" } }, "sha512-Nk59rMDoJaV+mHCOJPXuvB1zIbomlKS0dmSIqPGxd0enAXBnOfn4VWF+CGtRCwXZG9Epa54tZA7VIRlJDS8A6g=="],
 
