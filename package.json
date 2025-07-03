@@ -30,7 +30,7 @@
         "@augu/eslint-config": "5.3.1",
         "@augu/tsconfig": "1.2.0",
         "@stylistic/eslint-plugin": "5.1.0",
-        "@types/bun": "1.2.17",
+        "@types/bun": "1.2.18",
         "@types/js-yaml": "4.0.9",
         "@types/node": "24.0.10",
         "eslint-config-prettier": "10.1.5",
