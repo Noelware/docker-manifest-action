@@ -64,7 +64,7 @@ jobs:
                   file: playground/Dockerfile
                   push: true
                   tags: ghcr.io/noelware/docker-manifest-action/playground:latest-${{matrix.platform == 'linux/amd64' && 'amd64' || 'arm64'}}
-                  provenance: false
+                  provenance: true
                   platforms: ${{matrix.platform}}
                   context: .
     issue-880-manifest:
