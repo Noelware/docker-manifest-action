@@ -85,8 +85,8 @@ jobs:
               uses: ./
               with:
                   fallback: false
-                  inputs: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
-                  tags: ghcr.io/noelware/docker-manifest-action/playground:latest
+                  tags: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+                  inputs: ghcr.io/noelware/docker-manifest-action/playground:latest
                   push: true
                   append: true
                   annotations: |
