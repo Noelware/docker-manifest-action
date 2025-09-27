@@ -1,0 +1,95 @@
+# 🐻‍❄️🐳 docker-manifest-action: Tiny, simple GitHub Action to link Docker manifests easily
+# Copyright (c) 2022-2025 Noelware, LLC. <team@noelware.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# ------------------------------------------------------------------------------------------
+# This GitHub workflow contains integration testing to ensure that a build of this action
+# works as expected. It should fix the following issues:
+#
+#      * Noelware/docker-manifest-action#880 (https://github.com/Noelware/docker-manifest-action/issues/880)
+
+name: Integration Testing
+on:
+    workflow_dispatch: {}
+    push:
+        branches:
+            - master
+            - 'noel/**'
+            - 'issue/gh-**'
+        paths-ignore:
+            - '.github/**'
+            - '.vscode/**'
+            - '.prettierignore'
+            - 'bun.lock'
+            - '**.md'
+            - LICENSE
+            - renovate.json
+jobs:
+    issue-880:
+        name: 'Noelware/docker-manifest-action#880'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        strategy:
+            fail-fast: false
+            matrix:
+                platform: [linux/amd64, linux/arm64]
+        steps:
+            - uses: actions/checkout@v5
+            - uses: docker/setup-buildx-action@v3
+            - uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: noelbot
+                  password: ${{secrets.NOEL_TOKEN}}
+
+            - uses: docker/build-push-action@v6
+              with:
+                  file: playground/Dockerfile
+                  push: true
+                  tags: ghcr.io/noelware/docker-manifest-action/playground:latest-${{matrix.platform == 'linux/amd64' && 'amd64' || 'arm64'}}
+                  provenance: false
+                  platforms: ${{matrix.platform}}
+                  context: .
+
+    issue-880-manifest:
+        needs: [issue-880]
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        steps:
+            - uses: actions/checkout@v5
+            - uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: noelbot
+                  password: ${{secrets.NOEL_TOKEN}}
+
+            - name: '[staging] Create and Push Manifest Images'
+              uses: ./
+              with:
+                  fallback: false
+                  inputs: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
+                  tags: ghcr.io/noelware/docker-manifest-action/playground:latest
+                  push: true
+                  append: true
+                  annotations: |
+                      org.opencontainers.image.description="A test Docker image for multi-arch builds (VERSION)"
