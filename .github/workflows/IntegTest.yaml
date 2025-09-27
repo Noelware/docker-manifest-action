@@ -82,7 +82,7 @@ jobs:
                   password: ${{secrets.GITHUB_TOKEN}}
 
             - name: '[staging] Create and Push Manifest Images'
-              uses: Noelware/docker-manifest-action@master
+              uses: Noelware/docker-manifest-action@v1
               with:
                   fallback: false
                   tags: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64
