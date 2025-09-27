@@ -68,23 +68,26 @@ jobs:
                   provenance: false
                   platforms: ${{matrix.platform}}
                   context: .
-
     issue-880-manifest:
         needs: [issue-880]
         runs-on: ubuntu-latest
         permissions:
             contents: read
             packages: write
+        strategy:
+            fail-fast: false
+            matrix:
+                kind: [staging, master]
         steps:
             - uses: actions/checkout@v5
             - uses: docker/login-action@v3
               with:
                   registry: ghcr.io
-                  username: noelbot
-                  password: ${{secrets.NOEL_TOKEN}}
+                  username: ${{github.actor}}
+                  password: ${{secrets.GITHUB_TOKEN}}
 
-            - name: '[staging] Create and Push Manifest Images'
-              uses: ./
+            - name: '[${{matrix.kind}}] Create and Push Manifest Images'
+              uses: ${{matrix.kind == 'staging' && './' || 'Noelware/docker-manifest-action@master'}}
               with:
                   fallback: false
                   inputs: ghcr.io/noelware/docker-manifest-action/playground:latest-amd64,ghcr.io/noelware/docker-manifest-action/playground:latest-arm64

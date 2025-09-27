@@ -45,4 +45,4 @@ RUN set -eux; \
   esac; \
   curl -fsSL -o /usr/local/bin/bazel ${BAZELISK_DOWNLOAD_URL}
 
-RUN echo "hello world"
+RUN echo "hello world 2"
