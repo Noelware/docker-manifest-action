@@ -33,7 +33,6 @@ on:
             - 'noel/**'
             - 'issue/gh-**'
         paths-ignore:
-            - '.github/**'
             - '.vscode/**'
             - '.prettierignore'
             - 'bun.lock'
