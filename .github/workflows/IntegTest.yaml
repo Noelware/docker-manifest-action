@@ -89,5 +89,3 @@ jobs:
                   tags: ghcr.io/noelware/docker-manifest-action/playground:latest
                   push: true
                   append: true
-                  annotations: |
-                      org.opencontainers.image.description="A test Docker image for multi-arch builds (VERSION)"
