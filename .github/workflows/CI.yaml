@@ -47,7 +47,7 @@ jobs:
         name: General
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen
             - run: bun lint
@@ -59,7 +59,7 @@ jobs:
         needs: [ci] # Ensure that `ci` completes successfully.
         if: ${{github.repository == 'Noelware/docker-manifest-action' && github.event_name != 'pull_request'}}
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen
             - run: bun run build
