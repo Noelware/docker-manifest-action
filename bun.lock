@@ -7,7 +7,7 @@
       "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/exec": "1.1.1",
-        "@docker/actions-toolkit": "0.68.0",
+        "@docker/actions-toolkit": "0.69.0",
         "@noelware/utils": "2.5.1",
       },
       "devDependencies": {
@@ -84,7 +84,7 @@
 
     "@babel/highlight": ["@babel/highlight@7.25.9", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.25.9", "chalk": "^2.4.2", "js-tokens": "^4.0.0", "picocolors": "^1.0.0" } }, "sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw=="],
 
-    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.68.0", "", { "dependencies": { "@actions/artifact": "^4.0.0", "@actions/cache": "^4.1.0", "@actions/core": "^1.11.1", "@actions/exec": "^1.1.1", "@actions/github": "^6.0.1", "@actions/http-client": "^3.0.0", "@actions/io": "^2.0.0", "@actions/tool-cache": "^2.0.2", "@azure/storage-blob": "^12.15.0", "@octokit/core": "^5.2.2", "@octokit/plugin-rest-endpoint-methods": "^10.4.1", "@sigstore/bundle": "^4.0.0", "@sigstore/sign": "^4.0.1", "async-retry": "^1.3.3", "csv-parse": "^6.1.0", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.8", "he": "^1.2.0", "js-yaml": "^4.1.1", "jwt-decode": "^4.0.0", "semver": "^7.7.3", "tar-stream": "^3.1.7", "tmp": "^0.2.5" } }, "sha512-syVSX9NbHFGzn1rJvG52OXRw/3xbXX28kQDH0ZUzSS97ExMGk/JEuo5dmFo2W0EvuQuWMda7Alk4ZlcHmOnvSw=="],
+    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.69.0", "", { "dependencies": { "@actions/artifact": "^4.0.0", "@actions/cache": "^4.1.0", "@actions/core": "^1.11.1", "@actions/exec": "^1.1.1", "@actions/github": "^6.0.1", "@actions/http-client": "^3.0.0", "@actions/io": "^2.0.0", "@actions/tool-cache": "^2.0.2", "@azure/storage-blob": "^12.15.0", "@octokit/core": "^5.2.2", "@octokit/plugin-rest-endpoint-methods": "^10.4.1", "@sigstore/bundle": "^4.0.0", "@sigstore/sign": "^4.0.1", "async-retry": "^1.3.3", "csv-parse": "^6.1.0", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.8", "he": "^1.2.0", "js-yaml": "^4.1.1", "jwt-decode": "^4.0.0", "semver": "^7.7.3", "tar-stream": "^3.1.7", "tmp": "^0.2.5" } }, "sha512-wxexH/T8qp+jb3sFzqCHGHv9LZrm338PhpeYjEkp4Lv7NNmdnUz+EeDu1KvbFHNB85hR7mtf1ULh44g0vTahHQ=="],
 
     "@eslint-community/eslint-utils": ["@eslint-community/eslint-utils@4.9.0", "", { "dependencies": { "eslint-visitor-keys": "^3.4.3" }, "peerDependencies": { "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0" } }, "sha512-ayVFHdtZ+hsq1t2Dy24wCmGXGe4q9Gu3smhLYALJrr473ZH27MsnSL+LKUlimp4BWJqMDMLmPpx/Q9R3OAlL4g=="],
 
