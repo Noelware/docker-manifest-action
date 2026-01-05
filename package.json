@@ -23,7 +23,7 @@
     "dependencies": {
         "@actions/core": "2.0.1",
         "@actions/exec": "2.0.0",
-        "@docker/actions-toolkit": "0.71.0",
+        "@docker/actions-toolkit": "0.72.0",
         "@noelware/utils": "2.5.1"
     },
     "devDependencies": {
