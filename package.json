@@ -21,7 +21,7 @@
         "fmt": "prettier --write **/*.{js,ts,json,yml,yaml,md}"
     },
     "dependencies": {
-        "@actions/core": "2.0.2",
+        "@actions/core": "2.0.3",
         "@actions/exec": "2.0.0",
         "@docker/actions-toolkit": "0.75.0",
         "@noelware/utils": "2.5.1"
