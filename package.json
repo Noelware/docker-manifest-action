@@ -29,7 +29,7 @@
     "devDependencies": {
         "@augu/eslint-config": "5.3.1",
         "@augu/tsconfig": "1.2.0",
-        "@stylistic/eslint-plugin": "5.8.0",
+        "@stylistic/eslint-plugin": "5.9.0",
         "@types/bun": "1.3.9",
         "@types/js-yaml": "4.0.9",
         "@types/node": "25.3.0",
