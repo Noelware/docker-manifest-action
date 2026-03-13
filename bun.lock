@@ -7,7 +7,7 @@
       "dependencies": {
         "@actions/core": "3.0.0",
         "@actions/exec": "3.0.0",
-        "@docker/actions-toolkit": "0.81.0",
+        "@docker/actions-toolkit": "0.83.0",
         "@noelware/utils": "2.5.1",
       },
       "devDependencies": {
@@ -28,7 +28,7 @@
     },
   },
   "packages": {
-    "@actions/artifact": ["@actions/artifact@6.2.0", "", { "dependencies": { "@actions/core": "^3.0.0", "@actions/github": "^9.0.0", "@actions/http-client": "^4.0.0", "@azure/storage-blob": "^12.30.0", "@octokit/core": "^7.0.6", "@octokit/plugin-request-log": "^6.0.0", "@octokit/plugin-retry": "^8.0.0", "@octokit/request": "^10.0.7", "@octokit/request-error": "^7.1.0", "@protobuf-ts/plugin": "^2.2.3-alpha.1", "@protobuf-ts/runtime": "^2.9.4", "archiver": "^7.0.1", "jwt-decode": "^4.0.0", "unzip-stream": "^0.3.1" } }, "sha512-i9kmGy6WfuA6rby4fdD0UMKjT4MicFiKMsB5mUZ+1ggFW7+SzqvFsxLhIXxITkKUhTMVREXQfn/ZAN87EQLQDA=="],
+    "@actions/artifact": ["@actions/artifact@6.2.1", "", { "dependencies": { "@actions/core": "^3.0.0", "@actions/github": "^9.0.0", "@actions/http-client": "^4.0.0", "@azure/storage-blob": "^12.30.0", "@octokit/core": "^7.0.6", "@octokit/plugin-request-log": "^6.0.0", "@octokit/plugin-retry": "^8.0.0", "@octokit/request": "^10.0.7", "@octokit/request-error": "^7.1.0", "@protobuf-ts/plugin": "^2.2.3-alpha.1", "@protobuf-ts/runtime": "^2.9.4", "archiver": "^7.0.1", "jwt-decode": "^4.0.0", "unzip-stream": "^0.3.1" } }, "sha512-sJGH0mhEbEjBCw7o6SaLhUU66u27aFW8HTfkIb5Tk2/Wy0caUDc+oYQEgnuFN7a0HCpAbQyK0U6U7XUJDgDWrw=="],
 
     "@actions/cache": ["@actions/cache@6.0.0", "", { "dependencies": { "@actions/core": "^3.0.0", "@actions/exec": "^3.0.0", "@actions/glob": "^0.6.1", "@actions/http-client": "^4.0.0", "@actions/io": "^3.0.0", "@azure/core-rest-pipeline": "^1.22.0", "@azure/storage-blob": "^12.30.0", "@protobuf-ts/runtime-rpc": "^2.11.1", "semver": "^7.7.3" } }, "sha512-+tCs634SyGBQJ3KU1rtAVabmN/gYiT9WgzTSJzWwdPCLmM3zWrdbysaErKv8HyI6OozClrxNvDgPjJimbHZZvw=="],
 
@@ -82,7 +82,7 @@
 
     "@babel/highlight": ["@babel/highlight@7.25.9", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.25.9", "chalk": "^2.4.2", "js-tokens": "^4.0.0", "picocolors": "^1.0.0" } }, "sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw=="],
 
-    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.81.0", "", { "dependencies": { "@actions/artifact": "^6.2.0", "@actions/cache": "^6.0.0", "@actions/core": "^3.0.0", "@actions/exec": "^3.0.0", "@actions/github": "^9.0.0", "@actions/http-client": "^4.0.0", "@actions/io": "^3.0.2", "@actions/tool-cache": "^4.0.0", "@sigstore/bundle": "^4.0.0", "@sigstore/sign": "^4.1.0", "@sigstore/tuf": "^4.0.1", "@sigstore/verify": "^3.1.0", "async-retry": "^1.3.3", "csv-parse": "^6.1.0", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.8", "he": "^1.2.0", "js-yaml": "^4.1.1", "jwt-decode": "^4.0.0", "semver": "^7.7.4", "tar-stream": "^3.1.7", "tmp": "^0.2.5" } }, "sha512-861HBeSFd6Pu399kPdPPqcbg6geeXGZOX/eCcVOg67aL6OA1Qxt5O+euGIywA9XhPUoLFjY1shnKSFi6yCw1Ug=="],
+    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.83.0", "", { "dependencies": { "@actions/artifact": "^6.2.1", "@actions/cache": "^6.0.0", "@actions/core": "^3.0.0", "@actions/exec": "^3.0.0", "@actions/github": "^9.0.0", "@actions/http-client": "^4.0.0", "@actions/io": "^3.0.2", "@actions/tool-cache": "^4.0.0", "@sigstore/bundle": "^4.0.0", "@sigstore/sign": "^4.1.0", "@sigstore/tuf": "^4.0.1", "@sigstore/verify": "^3.1.0", "async-retry": "^1.3.3", "csv-parse": "^6.1.0", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.8", "he": "^1.2.0", "js-yaml": "^4.1.1", "jwt-decode": "^4.0.0", "semver": "^7.7.4", "tar-stream": "^3.1.7", "tmp": "^0.2.5" } }, "sha512-Ay0OkjQYf8s6kT8wisxEA+eryD8AafbUV/FEq7KiVVkCF6zbbA3WoDBhqD8NyRi3hOCHGHKa/c0DvSp2YQUH8g=="],
 
     "@eslint-community/eslint-utils": ["@eslint-community/eslint-utils@4.9.1", "", { "dependencies": { "eslint-visitor-keys": "^3.4.3" }, "peerDependencies": { "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0" } }, "sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ=="],
 
