@@ -63,7 +63,7 @@ jobs:
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen
             - run: bun run build
-            - uses: EndBug/add-and-commit@v9
+            - uses: EndBug/add-and-commit@v10
               with:
                   add: 'build'
                   author_name: 'Noel[bot]'
