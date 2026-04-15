@@ -20,7 +20,7 @@
         "eslint-config-prettier": "10.1.8",
         "eslint-formatter-codeframe": "7.32.2",
         "js-yaml": "4.1.1",
-        "prettier": "3.8.2",
+        "prettier": "3.8.3",
         "typescript": "6.0.2",
         "typescript-eslint": "8.58.2",
         "zod": "4.3.6",
@@ -516,7 +516,7 @@
 
     "prelude-ls": ["prelude-ls@1.2.1", "", {}, "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="],
 
-    "prettier": ["prettier@3.8.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q=="],
+    "prettier": ["prettier@3.8.3", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw=="],
 
     "proc-log": ["proc-log@6.1.0", "", {}, "sha512-iG+GYldRf2BQ0UDUAd6JQ/RwzaQy6mXmsk/IzlYyal4A4SNFw54MeH4/tLkF4I5WoWG9SQwuqWzS99jaFQHBuQ=="],
 
