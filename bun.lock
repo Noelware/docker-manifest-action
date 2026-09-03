@@ -7,7 +7,7 @@
       "dependencies": {
         "@actions/core": "3.0.1",
         "@actions/exec": "3.0.0",
-        "@docker/actions-toolkit": "0.96.0",
+        "@docker/actions-toolkit": "0.97.0",
         "@noelware/utils": "2.5.1",
       },
       "devDependencies": {
@@ -82,7 +82,7 @@
 
     "@babel/highlight": ["@babel/highlight@7.25.9", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.25.9", "chalk": "^2.4.2", "js-tokens": "^4.0.0", "picocolors": "^1.0.0" } }, "sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw=="],
 
-    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.96.0", "", { "dependencies": { "@actions/artifact": "^6.2.1", "@actions/cache": "^6.2.0", "@actions/core": "^3.0.1", "@actions/exec": "^3.0.0", "@actions/github": "^9.1.1", "@actions/http-client": "^4.0.1", "@actions/io": "^3.0.2", "@actions/tool-cache": "^4.0.0", "@sigstore/bundle": "^5.0.0", "@sigstore/tuf": "^5.0.0", "@sigstore/verify": "^4.1.2", "async-retry": "^1.3.3", "csv-parse": "^7.0.2", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.9", "he": "^1.2.0", "js-yaml": "^5.4.1", "jwt-decode": "^4.0.0", "semver": "^7.8.5", "tar-stream": "^3.2.1", "tmp": "^0.2.7" } }, "sha512-V36Kd9P5u/CdIhwEOFN005xtJG3LIGs9F6/ygG28gy4wC7xjJvNlJ+tvOg/2wMHfA9Y+vIno1k1zPprPX3cWQA=="],
+    "@docker/actions-toolkit": ["@docker/actions-toolkit@0.97.0", "", { "dependencies": { "@actions/artifact": "^6.2.1", "@actions/cache": "^6.2.0", "@actions/core": "^3.0.1", "@actions/exec": "^3.0.0", "@actions/github": "^9.1.1", "@actions/http-client": "^4.0.1", "@actions/io": "^3.0.2", "@actions/tool-cache": "^4.0.0", "@sigstore/bundle": "^5.0.0", "@sigstore/tuf": "^5.0.0", "@sigstore/verify": "^4.1.2", "async-retry": "^1.3.3", "csv-parse": "^7.0.2", "gunzip-maybe": "^1.4.2", "handlebars": "^4.7.9", "he": "^1.2.0", "js-yaml": "^5.4.1", "jwt-decode": "^4.0.0", "semver": "^7.8.5", "tar-stream": "^3.2.1", "tmp": "^0.2.7" } }, "sha512-3PxBW2b+ExlVid1oHpHohkgnI1EIiZzRKyxOpqiWlv1i0V+GwgVxjrA9sFn3wxvSa+cFOxK8oaS+CTsxZ1syjg=="],
 
     "@eslint-community/eslint-utils": ["@eslint-community/eslint-utils@4.9.1", "", { "dependencies": { "eslint-visitor-keys": "^3.4.3" }, "peerDependencies": { "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0" } }, "sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ=="],
 
